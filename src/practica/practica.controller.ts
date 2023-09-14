@@ -1,1 +1,1 @@
-console.log('go ts')
+import { Request, Response, NextFunction } from "express";

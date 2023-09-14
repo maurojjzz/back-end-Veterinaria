@@ -34,21 +34,21 @@ export class UsuarioRepository implements Repository<Usuario>{
     }
 
     public update(item: Usuario): Usuario | undefined {
-        const characterIdx= usuarios.findIndex(usu => usu.id_usuario === item.id_usuario );
+        const userIdx= usuarios.findIndex(usu => usu.id_usuario === item.id_usuario );
 
-        if(characterIdx !== -1){
-            usuarios[characterIdx] = {...usuarios[characterIdx], ...item}
+        if(userIdx !== -1){
+            usuarios[userIdx] = {...usuarios[userIdx], ...item}
         }
 
-        return  usuarios[characterIdx]
+        return  usuarios[userIdx]
     }
 
     public delete(item: { id: string; }): Usuario | undefined {
-        const characterIdx= usuarios.findIndex(usu => usu.id_usuario === item.id );
-        if(characterIdx !== -1){
-           const characterDeleted = usuarios[characterIdx]
-           usuarios.splice(characterIdx,1);
-           return characterDeleted;
+        const userIdx= usuarios.findIndex(usu => usu.id_usuario === item.id );
+        if(userIdx !== -1){
+           const userDeleted = usuarios[userIdx]
+           usuarios.splice(userIdx,1);
+           return userDeleted;
         }
     }
 

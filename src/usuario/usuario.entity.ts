@@ -10,6 +10,7 @@ export class Usuario {
         public nro_doc: number,
         public direccion: string,
         public sexo: string,
-        public user: string
+        public user: string,
+        // public mascotas:string[]
         ) {}
 }
