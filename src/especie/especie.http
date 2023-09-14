@@ -1,0 +1,35 @@
+### mostrar todas las especies
+GET http://localhost:3000/api/especies
+
+### traer una especie en concreto
+GET http://localhost:3000/api/especies/07
+
+### crear una especie
+POST http://localhost:3000/api/especies
+Content-Type: application/json
+
+{
+    "cod_especie": "32",
+    "descripcion": "Reptil"
+        
+}
+
+### modificar una especie
+PUT http://localhost:3000/api/especies/07
+Content-Type: application/json
+
+{       
+        "cod_especie": "07",
+        "descripcion": "Ave"
+}
+
+### modificar una especie
+PATCH  http://localhost:3000/api/especies/07
+Content-Type: application/json
+
+{       
+        "descripcion": "Canino"
+}
+
+### eliminar una especie
+DELETE http://localhost:3000/api/especies/07

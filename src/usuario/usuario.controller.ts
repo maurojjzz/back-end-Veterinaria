@@ -89,9 +89,4 @@ function remove(req:Request, res:Response){
     }
 };
 
-
-
-
-
-
 export {sanitizeUsuarioInput, findAll, findOne, add, update, remove}
