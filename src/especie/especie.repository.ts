@@ -8,31 +8,20 @@ const especies: Especie[] = [
     )
 ]
 
-export class EspecieRepository implements Repository<Especie>{
-    findAll(): Especie[] | undefined {
-        return especies;
+export class EspecieRepository implements  Repository<Especie>{
+    findAll(): Promise< Especie[] | undefined> {
+        throw new Error('Pronto');
     }
-    findOne(item: { id: string }): Especie | undefined {
-        return especies.find((esp)=> esp.cod_especie === item.id)
+    findOne(item: { id: string }): Promise< Especie | undefined> {
+        throw new Error('Pronto');
     }
-    add(item: Especie): Especie | undefined {
-        especies.push(item)
-        return(item)
+    add(item: Especie): Promise< Especie | undefined> {
+        throw new Error('Pronto')
     }
-    update(item: Especie): Especie | undefined {
-        const especieIdx= especies.findIndex(esp => esp.cod_especie === item.cod_especie );
-
-        if(especieIdx !== -1){
-            especies[especieIdx] = {...especies[especieIdx], ...item}
-        }
-        return  especies[especieIdx]
+    update(id:string, item: Especie): Promise<Especie | undefined> {
+        throw new Error('Pronto');
     }
-    delete(item: { id: string }): Especie | undefined {
-        const especieIdx= especies.findIndex(esp => esp.cod_especie === item.id );
-        if(especieIdx !== -1){
-           const especieDeleted = especies[especieIdx]
-           especies.splice(especieIdx,1);
-           return especieDeleted;
-        }
+    delete(item: { id: string }): Promise< Especie | undefined> {
+        throw new Error('Pronto');
     }
 }

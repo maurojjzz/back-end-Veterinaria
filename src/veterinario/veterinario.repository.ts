@@ -18,31 +18,20 @@ const veterinarios : Veterinario[] = [
 ]
                 
 export class VeterinarioRepository implements Repository<Veterinario>{
-    findAll(): Veterinario[] | undefined {
-        return veterinarios;
+    findAll(): Promise<Veterinario[] | undefined> {
+        throw new Error('Pronto');
     }
-    findOne(item: { id: string }): Veterinario | undefined {
-        return veterinarios.find((vet)=> vet.id_veterinario === item.id)
+    findOne(item: { id: string }): Promise<Veterinario | undefined> {
+        throw new Error('Pronto');
     }
-    add(item: Veterinario): Veterinario | undefined {
-        veterinarios.push(item)
-        return(item)
+    add(item: Veterinario): Promise< Veterinario | undefined> {
+        throw new Error('Pronto');
     }
-    update(item: Veterinario): Veterinario | undefined {
-        const vetIdx= veterinarios.findIndex(vet => vet.id_veterinario === item.id_veterinario );
-
-        if(vetIdx !== -1){
-            veterinarios[vetIdx] = {...veterinarios[vetIdx], ...item}
-        }
-        return  veterinarios[vetIdx]
+    update(id:string, item: Veterinario): Promise< Veterinario | undefined> {
+        throw new Error('Pronto');
     }
-    delete(item: { id: string }): Veterinario | undefined {
-        const vetIdx= veterinarios.findIndex(vet => vet.id_veterinario === item.id );
-        if(vetIdx !== -1){
-           const veterinaryDeleted = veterinarios[vetIdx]
-           veterinarios.splice(vetIdx,1);
-           return veterinaryDeleted;
-        }
+    delete(item: { id: string }): Promise< Veterinario | undefined >{
+        throw new Error('Pronto');
     }
 
 }

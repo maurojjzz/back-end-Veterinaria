@@ -65,7 +65,7 @@ function add(req:Request, res:Response){
 
 function update(req:Request, res:Response){
     req.body.sanitizedInput.id_veterinario = req.params.id;
-    const vet= repository.update(req.body.sanitizedInput)
+    const vet= repository.update(req.params.id, req.body.sanitizedInput)
 
     if(!vet){
         return res.status(404).json({
