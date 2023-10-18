@@ -1,55 +1,39 @@
-import { Usuario } from "./usuario.entity.js";
+import { UsuarioModel} from "./usuario.entity.js";
 import { Repository } from "../shared/repository.js";
+import * as mongoose from 'mongoose'
+import { DocumentType } from "@typegoose/typegoose";
 
 
-const usuarios : Usuario[] = [
-    new Usuario(
-        '33as3',
-        'User',
-        'Account',
-        'user@account.com',
-        'pepito123',
-        3413569854,
-        'dni',
-        45365541,
-        'Los Arrayanez 2415',
-        'masculino',
-        'UserAccount'
-    )
-]
+export class UsuarioRepository implements Repository<DocumentType<typeof UsuarioModel>>{
 
-
-export class UsuarioRepository implements Repository<Usuario>{
-    public findAll(): Usuario[] | undefined {
-        return usuarios;
+    public async findAll(): Promise< DocumentType<typeof UsuarioModel>[]  | undefined> {
+        return await UsuarioModel.find().populate('rol');
     }
     
-    public findOne(item: { id: string }): Usuario | undefined {
-        return usuarios.find((usu)=> usu.id_usuario === item.id)
+    public async findOne(item: { id: string }):Promise< DocumentType<typeof UsuarioModel >| undefined> {
+        const _id = new mongoose.Types.ObjectId(item.id);
+        return await UsuarioModel.findOne({_id}) || undefined;
     }
 
-    public add(item: Usuario): Usuario | undefined {
-        usuarios.push(item)
-        return item;
-    }
-
-    public update(item: Usuario): Usuario | undefined {
-        const userIdx= usuarios.findIndex(usu => usu.id_usuario === item.id_usuario );
-
-        if(userIdx !== -1){
-            usuarios[userIdx] = {...usuarios[userIdx], ...item}
+    public async add(item: DocumentType<typeof UsuarioModel>): Promise<DocumentType<typeof UsuarioModel> | undefined> {
+        try{
+        const user = new UsuarioModel(item);
+        const savedUser = await user.save();
+        return savedUser as unknown as DocumentType<typeof UsuarioModel>
+        } catch(error){
+            console.error(error)
+            return undefined;
         }
-
-        return  usuarios[userIdx]
     }
 
-    public delete(item: { id: string; }): Usuario | undefined {
-        const userIdx= usuarios.findIndex(usu => usu.id_usuario === item.id );
-        if(userIdx !== -1){
-           const userDeleted = usuarios[userIdx]
-           usuarios.splice(userIdx,1);
-           return userDeleted;
-        }
+    public async update(id:string, item: DocumentType<typeof UsuarioModel> ):Promise< DocumentType<typeof UsuarioModel> | undefined> {
+        const _id = new mongoose.Types.ObjectId(id);
+        return (await UsuarioModel.findOneAndUpdate({_id}, {$set: item}, {returnDocument: 'after'})) || undefined
+    }
+
+    public async delete(item: { id: string; }): Promise<DocumentType<typeof UsuarioModel> | undefined> {
+        const _id = new mongoose.Types.ObjectId(item.id);
+        return (await UsuarioModel.findOneAndDelete({_id})) || undefined
     }
 
 }

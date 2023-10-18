@@ -1,22 +1,22 @@
 import { Request, Response, NextFunction } from "express";
 import { UsuarioRepository } from "./usuario.repository.js";
-import { Usuario } from "./usuario.entity.js";
+import { UsuarioModel, Usuario } from "./usuario.entity.js";
+import { DocumentType } from "@typegoose/typegoose";
 
 const repository = new UsuarioRepository();
 
-function sanitizeUsuarioInput(req:Request, res:Response, next:NextFunction){
+
+async function sanitizeUsuarioInput(req:Request, res:Response, next:NextFunction){
     req.body.sanitizedInput = {
-        id_usuario: req.body.id_usuario,
         nombre: req.body.nombre,
         apellido: req.body.apellido,
         email: req.body.email, 
         password: req.body.password,
         telefono: req.body.telefono,
-        tipo_doc: req.body.tipo_doc,
         nro_doc: req.body.nro_doc,
         direccion: req.body.direccion,
-        sexo: req.body.sexo,
-        user: req.body.user
+        rol: req.body.rol,
+        mascotas: req.body.mascotas
     }
     Object.keys(req.body.sanitizedInput).forEach(key => {
         if(req.body.sanitizedInput[key] === undefined){
@@ -26,45 +26,38 @@ function sanitizeUsuarioInput(req:Request, res:Response, next:NextFunction){
     next();
 }
 
-function findAll(req:Request, res:Response){
-    res.json({data: repository.findAll()});
+async function findAll(req:Request, res:Response){
+    res.json({data: await repository.findAll()});
 };
 
-function findOne(req:Request, res:Response ){
-    const usuario = repository.findOne({id:req.params.id});
+async function findOne(req:Request, res:Response ){
+
+    const usuario = await repository.findOne({id:req.params.id});
     if(!usuario){
         return res.status(404).json({message:'Usuario no encontrado'})
     }
     return res.json({data: usuario});
 };
 
-function add(req:Request, res:Response){
-    const {id_usuario, nombre, apellido, email, password, telefono, tipo_doc, nro_doc, direccion, sexo, user} = req.body.sanitizedInput;
-
-    const userInput = new Usuario(
-        id_usuario,
-        nombre,
-        apellido,
-        email, 
-        password,
-        telefono,
-        tipo_doc,
-        nro_doc,
-        direccion,
-        sexo,
-        user);
-
-    const userNew = repository.add(userInput)
-
-    return res.status(201).send({
-        message:'Usuario creado',
-        data:userNew
-    });
+async function add(req:Request, res:Response){
+    try {
+        const userInput = req.body.sanitizedInput as DocumentType<typeof UsuarioModel>;
+        const newUser = await repository.add(userInput)
+        
+        return res.status(201).send({
+            message:'Usuario creado',
+            data: newUser
+        });
+    } catch (error) {
+        return res.status(500).send({
+            message: 'Server error',
+            error: error
+        })
+    }
 };
 
-function update(req:Request, res:Response){
-    req.body.sanitizedInput.id_usuario = req.params.id;
-    const user= repository.update(req.body.sanitizedInput)
+async function update(req:Request, res:Response){
+    const user = await repository.update(req.params.id, req.body.sanitizedInput)
 
     if(!user){
         return res.status(404).json({
@@ -78,9 +71,9 @@ function update(req:Request, res:Response){
     });
 };
 
-function remove(req:Request, res:Response){
+async function remove(req:Request, res:Response){
     const id = req.params.id;
-    const userDeleted= repository.delete({id})
+    const userDeleted= await repository.delete({id})
 
     if(!userDeleted){
       return res.status(404).send({message:'Usuario no encontrado'})
