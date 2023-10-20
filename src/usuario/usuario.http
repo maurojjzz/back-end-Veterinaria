@@ -2,54 +2,46 @@
 GET http://localhost:3000/api/usuarios
 
 ### Obtener un usuario
-GET http://localhost:3000/api/usuarios/33as3
+GET http://localhost:3000/api/usuarios/652f4d521395760f777215f2
 
 ### Enviar un nuevo usuario
 POST http://localhost:3000/api/usuarios
 Content-Type: application/json
 
 {
-    "id_usuario": "225ds5",
     "nombre": "Saylor",
     "apellido": "Twift",
-    "email": "middays@gmail.com", 
-    "password": "hater123",
-    "telefono": 1989131313,
-    "tipo_doc": "dni",
-    "nro_doc": 42546898,
+    "email": "otros@gmail.com", 
+    "password": "Password1",
+    "telefono": 1988897919,
+    "nro_doc": 42735898,
     "direccion": "Cornelia St 13",
-    "sexo": "femenino",
-    "user": "ATWTMVFTV"
+    "rol": "652f4bef1b11e080b4692aea"
 }
 
 ### modificar un usuario - PUT
-PUT  http://localhost:3000/api/usuarios/33as3
+PUT  http://localhost:3000/api/usuarios/652f4d521395760f777215f2
 Content-Type: application/json
 
 {
-    "id_usuario": "33as3",
     "nombre": "Otro",
     "apellido": "Usuario",
     "email": "otromail@gmail.com", 
-    "password": "hater123",
+    "password": "Hater123",
     "telefono": 6536536585,
-    "tipo_doc": "dni",
     "nro_doc": 42546558,
-    "direccion": "Calle real 995",
-    "sexo": "Masculino",
-    "user": "YoNoFui3356"
+    "direccion": "Calle real 995"
 }
 
 ### modificar un usuario - PATCH
-PATCH   http://localhost:3000/api/usuarios/33as3
+PATCH   http://localhost:3000/api/usuarios/652f4d521395760f777215f2
 Content-Type: application/json
 
 {
     "apellido": "NoSe",
     "email": "nadaOriginal@gmail.com", 
-    "direccion": "Cero imaginacion man 995",
-    "user": "IDK"
+    "direccion": "Cero imaginacion man 995"
 }
 
 ### eliminar un usuario 
-DELETE http://localhost:3000/api/usuarios/33as3
+DELETE http://localhost:3000/api/usuarios/652f5323e53f0e57945ce005

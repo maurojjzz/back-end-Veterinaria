@@ -48,7 +48,7 @@ function add(req:Request, res:Response){
 
 function update(req:Request, res:Response){
     req.body.sanitizedInput.cod_especie = req.params.cod;
-    const esp= repository.update(req.body.sanitizedInput)
+    const esp= repository.update(req.params.id, req.body.sanitizedInput)
 
     if(!esp){
         return res.status(404).json({
