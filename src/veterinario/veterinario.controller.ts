@@ -1,20 +1,20 @@
 import { Request, Response, NextFunction } from "express";
 import { Veterinario } from "./veterinario.entity.js";
+import { orm } from "../shared/db/orm.js";
 
+const em = orm.em;
+em.getRepository(Veterinario);
 
 function sanitizeVeterinarioInput(req:Request, res:Response, next:NextFunction){
     req.body.sanitizedInput = {
-        id_veterinario: req.body.id_veterinario,
         matricula: req.body.matricula,
         apellido: req.body.apellido,
         nombre: req.body.nombre,
-        direccion: req.body.direccion,
         telefono: req.body.telefono,
         email: req.body.email, 
         password: req.body.password,
-        tipo_doc: req.body.tipo_doc,
         nro_doc: req.body.nro_doc,
-        sexo: req.body.sexo,
+        rol: req.body.rol
     }
     Object.keys(req.body.sanitizedInput).forEach(key => {
         if(req.body.sanitizedInput[key] === undefined){
@@ -24,25 +24,82 @@ function sanitizeVeterinarioInput(req:Request, res:Response, next:NextFunction){
     next();
 }
 
-function findAll(req:Request, res:Response){
-    res.status(500).send("No implementado")
+async function findAll(req:Request, res:Response){
+    try {
+        const veterinarios = await em.find(Veterinario, {}, {populate:['rol']})
+        return res.status(200).json({
+            message:"Veterinarios encontrados",
+            data: veterinarios
+        });
+    } catch (error:any) {
+        res.status(500).json({
+            message:error.message
+        })
+    }
+    
 };
 
-function findOne(req:Request, res:Response ){
-    res.status(500).send("No implementado")
+async function findOne(req:Request, res:Response ){
+    try {
+        const id = req.params.id;
+        const veterinario = await em.findOneOrFail(Veterinario, {id}, {populate:['rol']})
+        return res.status(200).json({
+            message:`Veterinario con ID ${id} encontrado`,
+            data: veterinario
+        })
+    } catch (error:any) {
+        res.status(500).json({
+            message:error.message
+        })
+    }
 };
 
 
-function add(req:Request, res:Response){
-    res.status(500).send("No implementado")
+async function add(req:Request, res:Response){
+    try {
+        const newVet = em.create(Veterinario, req.body.sanitizedInput);
+        await em.flush();
+        return res.status(201).json({
+            message:'Veterinario creado',
+            data:newVet
+        })
+    } catch (error:any) {
+        res.status(500).json({
+            message:error.message
+        })
+    }
 };
 
-function update(req:Request, res:Response){
-    res.status(500).send("No implementado")
+async function update(req:Request, res:Response){
+    try {
+        const id = req.params.id;
+        const vet = await em.findOneOrFail(Veterinario, {id});
+        em.assign(vet, req.body.sanitizedInput);
+        await em.flush();
+        return res.status(200).json({
+            message:`Veterinario actualizado correctamente`,
+            data:vet
+        })
+    } catch (error:any) {
+        res.status(500).json({
+            message:error.message
+        })
+    }
 };
 
-function remove(req:Request, res:Response){
-    res.status(500).send("No implementado")
+async function remove(req:Request, res:Response){
+    try {
+        const id = req.params.id;
+        const vetToDelete = await em.getReference(Veterinario, id)
+        await em.removeAndFlush(vetToDelete)
+        return res.status(200).json({
+            message:`Veterinario eliminado correctamente`
+        })
+    } catch (error:any) {
+        res.status(500).json({
+            message:error.message
+        })
+    }
 };
 
 

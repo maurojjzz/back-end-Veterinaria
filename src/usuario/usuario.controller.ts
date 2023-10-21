@@ -6,7 +6,7 @@ const em= orm.em;
 em.getRepository(Usuario);
 
 async function sanitizeUsuarioInput(req:Request, res:Response, next:NextFunction){
-    req.body.sanitizedInput = {
+    req.body.sanitizedInput = {         
         nombre: req.body.nombre,
         apellido: req.body.apellido,
         email: req.body.email, 
