@@ -1,36 +1,36 @@
-import { prop, getModelForClass, Ref } from '@typegoose/typegoose'
+import {Entity, Property, Collection, ManyToOne, OneToMany, Rel, Cascade} from "@mikro-orm/core"
 import { Rol } from '../rol/rol.entity.js'
 import { Mascota } from '../mascota/mascota.entity.js'
+import { BaseEntity } from "../shared/db/baseEntity.js"
 
-export class Usuario {
+@Entity()
+export class Usuario extends BaseEntity {
 
-    @prop({ type: String, required: true, maxlength: 50, minlength: 3 })
-    public nombre: string
+    @Property({nullable:false})
+    nombre!: string
 
-    @prop({ type: String, required: true, maxlength: 50, minlength: 3 })
-    public apellido: string
+    @Property({nullable:false})
+    apellido!: string
 
-    @prop({ type: String, required:true, unique: true, trim: true, match: /^\S+@\S+\.\S+$/ })
-    public email: string
+    @Property({nullable:false, unique:true})
+    email!: string
 
-    @prop({type: String, required:true, match: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/})
-    public password: string
+    @Property({nullable:false})
+    password!: string
 
-    @prop({ type: Number, unique:true})
-    public telefono: number
+    @Property({nullable:false, unique:true})
+    telefono!: string
 
-    @prop({ type: String, required:true, match: /^[0-9]{7,8}$/})
-    public nro_doc: string
+    @Property({nullable:false, unique:true})
+    nro_doc!: string
 
-    @prop({ type: String})
-    public direccion: string
+    @Property({nullable:false})
+    direccion!: string
 
-    @prop({ref:()=> Rol})
-    public rol:Ref<Rol>
+    @ManyToOne(()=>Rol, {nullable:false})
+    rol!: Rel<Rol>
 
-    @prop({ ref:()=>Mascota })
-    public mascotas: Ref<Mascota>[]
+    @OneToMany(()=>Mascota, mas => mas.owner, {cascade:[Cascade.ALL]})
+    mascotas =  new Collection<Mascota>(this)
 
 }
-
-export const UsuarioModel = getModelForClass(Usuario);

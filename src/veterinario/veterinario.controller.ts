@@ -1,8 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import { VeterinarioRepository } from "./veterinario.repository.js";
 import { Veterinario } from "./veterinario.entity.js";
 
-const repository = new VeterinarioRepository();
 
 function sanitizeVeterinarioInput(req:Request, res:Response, next:NextFunction){
     req.body.sanitizedInput = {
@@ -27,67 +25,24 @@ function sanitizeVeterinarioInput(req:Request, res:Response, next:NextFunction){
 }
 
 function findAll(req:Request, res:Response){
-    res.json({data: repository.findAll()});
+    res.status(500).send("No implementado")
 };
 
 function findOne(req:Request, res:Response ){
-    const veterinario = repository.findOne({id:req.params.id});
-    if(!veterinario){
-        return res.status(404).json({message:'veterinario no encontrado'})
-    }
-    return res.json({data: veterinario});
+    res.status(500).send("No implementado")
 };
 
 
 function add(req:Request, res:Response){
-    const {id_veterinario, matricula, apellido, nombre, direccion, telefono, email, password, tipo_doc, nro_doc, sexo} = req.body.sanitizedInput;
-
-    const veterInput = new Veterinario(
-        id_veterinario,
-        matricula,
-        apellido,
-        nombre,
-        direccion,
-        telefono,
-        email,
-        password,
-        tipo_doc,
-        nro_doc,
-        sexo);
-
-    const newVeterinary = repository.add(veterInput)
-
-    return res.status(201).send({
-        message:'veterinario creado',
-        data:newVeterinary
-    });
+    res.status(500).send("No implementado")
 };
 
 function update(req:Request, res:Response){
-    req.body.sanitizedInput.id_veterinario = req.params.id;
-    const vet= repository.update(req.params.id, req.body.sanitizedInput)
-
-    if(!vet){
-        return res.status(404).json({
-            message: "veterinario no encontrado"
-        });
-    }
-
-    return res.status(200).send({
-        message: 'veterinario actualizado correctamente',
-        data: vet
-    });
+    res.status(500).send("No implementado")
 };
 
 function remove(req:Request, res:Response){
-    const id = req.params.id;
-    const veterDeleted= repository.delete({id})
-
-    if(!veterDeleted){
-      return res.status(404).send({message:'veterinario no encontrado'})
-    }else{
-        return res.status(200).send({message:'veterinario borrado exitosamente'});
-    }
+    res.status(500).send("No implementado")
 };
 
 
