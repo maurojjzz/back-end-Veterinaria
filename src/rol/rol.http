@@ -1,0 +1,25 @@
+### GET ALL
+GET http://localhost:3000/api/roles
+
+### GET ONE
+GET http://localhost:3000/api/roles/65334d8d48ec52ff5e08c85a
+
+### CREATE
+POST http://localhost:3000/api/roles
+Content-Type: application/json
+
+{
+   "descripcion":"Masdasd"
+}
+
+### MODIFY
+PUT  http://localhost:3000/api/roles/65334ded48ec52ff5e08c85c
+Content-Type: application/json
+
+{
+    "descripcion":"Otro"
+}
+
+
+### DELETE
+DELETE http://localhost:3000/api/roles/65334f2c48ec52ff5e08c85d

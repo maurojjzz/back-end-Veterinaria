@@ -2,7 +2,7 @@
 GET http://localhost:3000/api/usuarios
 
 ### Obtener un usuario
-GET http://localhost:3000/api/usuarios/652f4d521395760f777215f2
+GET http://localhost:3000/api/usuarios/653347dd1c7d492e38aca249
 
 ### Enviar un nuevo usuario
 POST http://localhost:3000/api/usuarios
@@ -11,37 +11,22 @@ Content-Type: application/json
 {
     "nombre": "Saylor",
     "apellido": "Twift",
-    "email": "otros@gmail.com", 
+    "email": "otrosss@gmail.com", 
     "password": "Password1",
-    "telefono": 1988897919,
-    "nro_doc": 42735898,
+    "telefono": "198857919",
+    "nro_doc": "4275898",
     "direccion": "Cornelia St 13",
-    "rol": "652f4bef1b11e080b4692aea"
+    "rol": "65334d8d48ec52ff5e08c85a"
 }
 
 ### modificar un usuario - PUT
-PUT  http://localhost:3000/api/usuarios/652f4d521395760f777215f2
+PUT  http://localhost:3000/api/usuarios/653347dd1c7d492e38aca249
 Content-Type: application/json
 
 {
-    "nombre": "Otro",
-    "apellido": "Usuario",
-    "email": "otromail@gmail.com", 
-    "password": "Hater123",
-    "telefono": 6536536585,
-    "nro_doc": 42546558,
-    "direccion": "Calle real 995"
+    "rol": "65334d8d48ec52ff5e08c85a"
 }
 
-### modificar un usuario - PATCH
-PATCH   http://localhost:3000/api/usuarios/652f4d521395760f777215f2
-Content-Type: application/json
-
-{
-    "apellido": "NoSe",
-    "email": "nadaOriginal@gmail.com", 
-    "direccion": "Cero imaginacion man 995"
-}
 
 ### eliminar un usuario 
-DELETE http://localhost:3000/api/usuarios/652f5323e53f0e57945ce005
+DELETE http://localhost:3000/api/usuarios/6533480f1c7d492e38aca24a

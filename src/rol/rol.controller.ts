@@ -1,21 +1,13 @@
 import { Request, Response, NextFunction } from "express";
-import { Usuario } from "./usuario.entity.js";
+import { Rol } from "./rol.entity.js";
 import { orm } from "../shared/db/orm.js";
 
 const em= orm.em;
-em.getRepository(Usuario);
+em.getRepository(Rol);
 
-async function sanitizeUsuarioInput(req:Request, res:Response, next:NextFunction){
+async function sanitizeRolInput(req:Request, res:Response, next:NextFunction){
     req.body.sanitizedInput = {
-        nombre: req.body.nombre,
-        apellido: req.body.apellido,
-        email: req.body.email, 
-        password: req.body.password,
-        telefono: req.body.telefono,
-        nro_doc: req.body.nro_doc,
-        direccion: req.body.direccion,
-        rol: req.body.rol,
-        mascotas: req.body.mascotas
+        descripcion: req.body.descripcion,
     }
     Object.keys(req.body.sanitizedInput).forEach(key => {
         if(req.body.sanitizedInput[key] === undefined){
@@ -27,10 +19,10 @@ async function sanitizeUsuarioInput(req:Request, res:Response, next:NextFunction
 
 async function findAll(req:Request, res:Response){
     try {
-        const usuarios = await em.find(Usuario, {}, {populate:['rol', 'mascotas']})
+        const roles = await em.find(Rol, {})
         res.status(200).json({
-            message: 'Usuarios encontrados',
-            data:usuarios
+            message: 'Roles encontrados',
+            data:roles
         });
     } catch (error:any) {
         res.status(500).json({
@@ -42,10 +34,10 @@ async function findAll(req:Request, res:Response){
 async function findOne(req:Request, res:Response ){
     try {
         const id = req.params.id;
-        const usuario = await em.findOneOrFail(Usuario, {id}, {populate:['rol', 'mascotas']});
+        const rol = await em.findOneOrFail(Rol, {id});
         res.status(200).json({
-            message:'Usuario encontrado',
-            data:usuario
+            message:'Rol encontrado',
+            data:rol
         })
     } catch (error:any) {
         res.status(500).json({
@@ -56,11 +48,11 @@ async function findOne(req:Request, res:Response ){
 
 async function add(req:Request, res:Response){
     try {
-        const newUser = em.create(Usuario, req.body.sanitizedInput)
+        const newRol = em.create(Rol, req.body.sanitizedInput)
         await em.flush();
         return res.status(201).json({
-            message:'Usuario creado',
-            data: newUser
+            message:'Rol creado',
+            data: newRol
         });
     } catch (error:any) {
         res.status(500).json({
@@ -72,12 +64,12 @@ async function add(req:Request, res:Response){
 async function update(req:Request, res:Response){
     try {
         const id = req.params.id;
-        const user = await em.findOneOrFail(Usuario, {id})
-        em.assign(user, req.body.sanitizedInput)
+        const rol = await em.findOneOrFail(Rol, {id})
+        em.assign(rol, req.body.sanitizedInput)
         await em.flush();
         res.status(200).send({
-            message: 'Usuario actualizado correctamente',
-            data: user
+            message: 'Rol actualizado correctamente',
+            data: rol
         });
     } catch (error:any) {
         res.status(500).json({
@@ -89,10 +81,10 @@ async function update(req:Request, res:Response){
 async function remove(req:Request, res:Response){
     try {
         const id = req.params.id;
-        const userToDelete = await em.getReference(Usuario, id);
-        em.removeAndFlush(userToDelete)
+        const rolToDelete = await em.getReference(Rol, id);
+        em.removeAndFlush(rolToDelete)
         res.status(200).json({
-            message: 'Usuario eliminado correctamente'
+            message: 'Rol eliminado correctamente'
         })
     } catch (error:any) {
         res.status(500).json({
@@ -101,4 +93,4 @@ async function remove(req:Request, res:Response){
     }
 };
 
-export {sanitizeUsuarioInput, findAll, findOne, add, update, remove}
+export {sanitizeRolInput, findAll, findOne, add, update, remove}

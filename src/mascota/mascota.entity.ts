@@ -1,19 +1,28 @@
-import { prop, getModelForClass } from '@typegoose/typegoose'
+import {Entity, Property, ManyToOne, Rel} from "@mikro-orm/core"
+import { BaseEntity } from "../shared/db/baseEntity.js";
+import { Usuario } from "../usuario/usuario.entity.js";
 
-export class Mascota{
+@Entity()
+export class Mascota extends BaseEntity{
 
-    @prop()
-    public nombre:string;
-    @prop()
-    public sexo:string;
-    @prop()
-    public fecha_nacimiento:Date;
-    @prop()
-    public raza:string;
-    @prop()
-    public especie:string;
-    @prop()
-    public owner:string;
+    @Property({nullable:false})
+    nombre!:string;
+
+    @Property({nullable:false})
+    sexo!:string;
+
+    @Property()
+    fecha_nacimiento!:Date;
+
+    @ManyToOne(()=> Usuario, {nullable:false})
+    owner!: Rel<Usuario>;
+
+    // @Property()
+    // raza?:string;
+
+    // @Property()
+    // especie?:string;
+
+    
 }
 
-export const MascotaModel = getModelForClass(Mascota);

@@ -20,11 +20,12 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
-    "@typegoose/typegoose": "^11.6.0",
+    "@mikro-orm/core": "^5.8.10",
+    "@mikro-orm/mongo-highlighter": "^1.0.0",
+    "@mikro-orm/mongodb": "^5.8.10",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "mongodb": "^6.1.0",
-    "mongoose": "^7.6.3"
+    "reflect-metadata": "^0.1.13"
   }
 }
