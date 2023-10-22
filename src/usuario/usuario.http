@@ -9,14 +9,14 @@ POST http://localhost:3000/api/usuarios
 Content-Type: application/json
 
 {
-    "nombre": "Saylor",
-    "apellido": "Twift",
-    "email": "otrosss@gmail.com", 
+    "nombre": "Patalia",
+    "apellido": "Neluso",
+    "email": "calambre@gmail.com", 
     "password": "Password1",
-    "telefono": "198857919",
-    "nro_doc": "4275898",
-    "direccion": "Cornelia St 13",
-    "rol": "65334d8d48ec52ff5e08c85a"
+    "telefono": "198997919",
+    "nro_doc": "4276728",
+    "direccion": "Buenos Aires 6179",
+    "rol": "65334d6048ec52ff5e08c859"
 }
 
 ### modificar un usuario - PUT

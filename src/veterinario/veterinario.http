@@ -2,54 +2,37 @@
 GET http://localhost:3000/api/veterinarios
 
 ### traer un solo veterinario
-GET http://localhost:3000/api/veterinarios/566ase
+GET http://localhost:3000/api/veterinarios/6533f156ec66df25f176150f
 
 ### crear un veterinario
 POST http://localhost:3000/api/veterinarios
 Content-Type: application/json
 
 {
-        "id_veterinario":"0056as",
-        "matricula":"3535445ZZ",
+        "matricula":"353845ZZ",
         "apellido":"Coulee",
         "nombre":"Shae",
-        "direccion":"Queenzlay 356",
-        "telefono":3456565335,
-        "email":"shaecoulee@gmail.com",
+        "telefono":"345865335",
+        "email":"shaec8ulee@gmail.com",
         "password":"ihatethatbaldguy01",
-        "tipo_doc":"dni",
-        "nro_doc":65874521,
-        "sexo":"masculino"
+        "nro_doc":"65884521",
+        "rol":"65334db548ec52ff5e08c85b"
 }
 
 ### modificar un veterinario
-PUT http://localhost:3000/api/veterinarios/566ase
+PUT http://localhost:3000/api/veterinarios/6533f26d059dedfac38f97ac
 Content-Type: application/json
 
 {
-        "id_veterinario":"566ase",
         "matricula":"7777445ZZ",
         "apellido":"Dixon",
         "nombre":"Daryl",
-        "direccion":"Caminito 556",
-        "telefono":345881115,
+        "telefono":"345881115",
         "email":"daryldixon@gmail.com",
         "password":"walkerskiller7000",
-        "tipo_doc":"dni",
-        "nro_doc":33544521,
-        "sexo":"masculino"
+        "nro_doc":"33544521"
 }
 
-### modificar un veterinario
-PATCH  http://localhost:3000/api/veterinarios/566ase
-Content-Type: application/json
-
-{
-        "apellido":"Dario",
-        "nombre":"Dixoso",
-        "direccion":"North Highway 658",
-        "email":"daryonldix@gmail.com"
-}
 
 ### eliminar un veterinario
-DELETE http://localhost:3000/api/veterinarios/566ase
+DELETE http://localhost:3000/api/veterinarios/6533f2bdde367cdb2a479f33

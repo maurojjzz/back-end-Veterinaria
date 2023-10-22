@@ -8,6 +8,8 @@ em.getRepository(Rol);
 async function sanitizeRolInput(req:Request, res:Response, next:NextFunction){
     req.body.sanitizedInput = {
         descripcion: req.body.descripcion,
+        usuarios: req.body.usuarios,
+        veterinarios: req.body.veterinarios
     }
     Object.keys(req.body.sanitizedInput).forEach(key => {
         if(req.body.sanitizedInput[key] === undefined){
@@ -19,10 +21,15 @@ async function sanitizeRolInput(req:Request, res:Response, next:NextFunction){
 
 async function findAll(req:Request, res:Response){
     try {
-        const roles = await em.find(Rol, {})
+        const roles = await em.find(Rol, {}, {populate:['usuarios','veterinarios']})
+        const filteredRoles = roles.map((rol) => ({
+            ...rol,
+            usuarios: rol.usuarios.length > 0 ? rol.usuarios : undefined,
+            veterinarios: rol.veterinarios.length > 0 ? rol.veterinarios : undefined,
+          }));
         res.status(200).json({
             message: 'Roles encontrados',
-            data:roles
+            data:filteredRoles
         });
     } catch (error:any) {
         res.status(500).json({
@@ -34,10 +41,15 @@ async function findAll(req:Request, res:Response){
 async function findOne(req:Request, res:Response ){
     try {
         const id = req.params.id;
-        const rol = await em.findOneOrFail(Rol, {id});
+        const rol = await em.findOneOrFail(Rol, {id}, {populate:['usuarios', 'veterinarios']});
+        const filteredRol = {
+            ...rol,
+            usuarios: rol.usuarios.length > 0 ? rol.usuarios : undefined,
+            veterinarios: rol.veterinarios.length > 0 ? rol.veterinarios : undefined,
+          };
         res.status(200).json({
             message:'Rol encontrado',
-            data:rol
+            data:filteredRol
         })
     } catch (error:any) {
         res.status(500).json({
