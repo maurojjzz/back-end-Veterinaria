@@ -19,7 +19,7 @@ function sanitizeEspecieInput(req:Request, res:Response, next:NextFunction){
 
 async function findAll(req: Request, res: Response) {
     try {
-        const especies = await em.find(Especie, {});
+        const especies = await em.find(Especie, {}, {populate:['razas']});
         res.status(200).json({
             message: 'Especies encontradas',
             data: especies
@@ -34,7 +34,7 @@ async function findAll(req: Request, res: Response) {
 async function findOne(req: Request, res: Response) {
     try {
         const id = req.params.id;
-        const especie = await em.findOneOrFail(Especie, { id });
+        const especie = await em.findOneOrFail(Especie, { id }, {populate:['razas']});
         res.status(200).json({
             message: 'Especie encontrada',
             data: especie
