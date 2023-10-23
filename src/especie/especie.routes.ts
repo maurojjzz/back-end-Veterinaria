@@ -5,10 +5,10 @@ const EspecieRouter = Router();
 
 EspecieRouter
     .get('/', findAll)
-    .get('/:cod', findOne)
+    .get('/:id', findOne)
     .post('/', sanitizeEspecieInput, add)
-    .put('/:cod', sanitizeEspecieInput, update)
-    .patch('/:cod', sanitizeEspecieInput, update)
-    .delete('/:cod', remove);
+    .put('/:id', sanitizeEspecieInput, update)
+    .patch('/:id', sanitizeEspecieInput, update)
+    .delete('/:id', remove);
 
 export {EspecieRouter}
