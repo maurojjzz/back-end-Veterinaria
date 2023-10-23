@@ -1,9 +1,9 @@
 import { Router } from "express";
 import { sanitizeEspecieInput, add, findAll, findOne, remove, update } from "./practica.controller.js";
 
-const PracticaRouter = Router();
+const practicaRouter = Router();
 
-PracticaRouter
+practicaRouter
     .get('/', findAll)
     .get('/:cod', findOne)
     .post('/', sanitizeEspecieInput, add)
@@ -11,4 +11,4 @@ PracticaRouter
     .patch('/:cod', sanitizeEspecieInput, update)
     .delete('/:cod', remove);
 
-export {PracticaRouter}
+export {practicaRouter}
