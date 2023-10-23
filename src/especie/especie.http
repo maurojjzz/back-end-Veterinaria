@@ -9,7 +9,6 @@ POST http://localhost:3000/api/especies
 Content-Type: application/json
 
 {
-    "cod_especie": "32",
     "descripcion": "Reptil"
         
 }
