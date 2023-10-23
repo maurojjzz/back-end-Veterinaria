@@ -7,7 +7,6 @@ em.getRepository(Practica);
 
 function sanitizeEspecieInput(req:Request, res:Response, next:NextFunction){
     req.body.sanitizedInput = {
-        cod_especie: req.body.cod_especie,
         descripcion: req.body.descripcion
     }
     Object.keys(req.body.sanitizedInput).forEach(key => {

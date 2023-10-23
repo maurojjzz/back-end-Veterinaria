@@ -11,7 +11,7 @@ router
     .use('/usuarios', usuarioRouter)
     .use('/veterinarios', veterinaryRouter)
     .use('/especies', EspecieRouter)
-    .use('/roles', rolRouter);
+    .use('/roles', rolRouter)
     .use('/practicas', practicaRouter);
     
 

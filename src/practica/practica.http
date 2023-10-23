@@ -1,30 +1,28 @@
 ### mostrar todas las prácticas
-GET http://localhost:3000/api/practica
+GET http://localhost:3000/api/practicas
 
 ### traer una práctica en concreto
-GET http://localhost:3000/api/practica/17
+GET http://localhost:3000/api/practicas/6535e1dcc3f120197defbe02
 
 ### crear una práctica
 POST http://localhost:3000/api/practicas
 Content-Type: application/json
 
 {
-    "cod_especie": "31",
     "descripcion": "Castración"
         
 }
 
 ### modificar una práctica
-PUT http://localhost:3000/api/practica/17
+PUT http://localhost:3000/api/practicas/6535e20ec3f120197defbe04
 Content-Type: application/json
 
 {       
-        "cod_practica": "17",
         "descripcion": "Inyección de Amoxicilina"
 }
 
 ### modificar una práctica
-PATCH  http://localhost:3000/api/practica/17
+PATCH  http://localhost:3000/api/practicas/6535e1dcc3f120197defbe02
 Content-Type: application/json
 
 {       
@@ -32,4 +30,4 @@ Content-Type: application/json
 }
 
 ### eliminar una práctica
-DELETE http://localhost:3000/api/practica/17
+DELETE http://localhost:3000/api/practicas/6535e20ec3f120197defbe04
