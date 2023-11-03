@@ -9,6 +9,7 @@ async function sanitizeRazaInput(req:Request, res:Response, next:NextFunction){
     req.body.sanitizedInput = {         
         descripcion: req.body.descripcion,
         especie: req.body.especie,
+        mascotas: req.body.mascota
     }
     Object.keys(req.body.sanitizedInput).forEach(key => {
         if(req.body.sanitizedInput[key] === undefined){
@@ -20,7 +21,7 @@ async function sanitizeRazaInput(req:Request, res:Response, next:NextFunction){
 
 async function findAll(req:Request, res:Response){
     try {
-        const raza = await em.find(Raza, {},{populate:['especie']})
+        const raza = await em.find(Raza, {},{populate:['especie', 'mascotas']})
         res.status(200).json({
             message: 'Razas encontradas',
             data:raza
@@ -35,7 +36,7 @@ async function findAll(req:Request, res:Response){
 async function findOne(req:Request, res:Response ){
     try {
         const id = req.params.id;
-        const raza = await em.findOneOrFail(Raza, {id},{populate:['especie']});
+        const raza = await em.findOneOrFail(Raza, {id},{populate:['especie', 'mascotas']});
         res.status(200).json({
             message:'Raza encontrada',
             data:raza

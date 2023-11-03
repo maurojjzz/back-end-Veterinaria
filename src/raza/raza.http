@@ -2,7 +2,7 @@
 GET http://localhost:3000/api/raza
 
 ### GET ONE
-GET http://localhost:3000/api/raza/654545fb3cc93334b7afb550
+GET http://localhost:3000/api/raza/6545564b4c3aa82f3476cc64
 
 ### CREATE
 POST http://localhost:3000/api/raza
