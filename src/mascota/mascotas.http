@@ -1,0 +1,33 @@
+### GET ALL
+GET http://localhost:3000/api/mascotas
+
+### GET ONE
+GET http://localhost:3000/api/mascotas/6545565a4c3aa82f3476cc65
+
+### CREATE
+POST http://localhost:3000/api/mascotas
+Content-Type: application/json
+
+{
+   "nombre": "Lola",
+   "sexo": "Hembra",
+   "fecha_nacimiento": "10-05-2010",
+   "owner": "653347dd1c7d492e38aca249",
+   "raza": "6545564b4c3aa82f3476cc64"
+}
+
+### MODIFY
+PUT  http://localhost:3000/api/mascotas/654557004c3aa82f3476cc66
+Content-Type: application/json
+
+{
+    "nombre": " Maggie",
+    "sexo": "Hembra",
+    "fecha_nacimiento": "10-05-2010",
+    "owner": "653347dd1c7d492e38aca249",
+    "raza": "6545564b4c3aa82f3476cc64"
+}
+
+
+### DELETE
+DELETE http://localhost:3000/api/mascotas/654557174c3aa82f3476cc67

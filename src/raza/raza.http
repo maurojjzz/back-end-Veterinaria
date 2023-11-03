@@ -9,8 +9,8 @@ POST http://localhost:3000/api/raza
 Content-Type: application/json
 
 {
-   "descripcion": "SiaPersames",
-   "especie": "654545e83cc93334b7afb54f"
+   "descripcion": "Sin raza",
+   "especie": "654539ed0a3f65743cef870f"
 }
 
 ### MODIFY
@@ -24,4 +24,4 @@ Content-Type: application/json
 
 
 ### DELETE
-DELETE http://localhost:3000/api/raza/65454829668b9af16222a47f
+DELETE http://localhost:3000/api/raza/6545509e3016f1121dabc120

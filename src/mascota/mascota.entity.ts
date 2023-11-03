@@ -1,6 +1,7 @@
 import {Entity, Property, ManyToOne, Rel} from "@mikro-orm/core"
 import { BaseEntity } from "../shared/db/baseEntity.js";
 import { Usuario } from "../usuario/usuario.entity.js";
+import { Raza } from "../raza/raza.entity.js";
 
 @Entity()
 export class Mascota extends BaseEntity{
@@ -17,11 +18,9 @@ export class Mascota extends BaseEntity{
     @ManyToOne(()=> Usuario, {nullable:false})
     owner!: Rel<Usuario>;
 
-    // @Property()
-    // raza?:string;
+    @ManyToOne(()=> Raza, {nullable:false})
+    raza!: Rel<Raza>;
 
-    // @Property()
-    // especie?:string;
 
     
 }
