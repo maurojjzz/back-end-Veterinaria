@@ -14,7 +14,7 @@ export class Atencion extends BaseEntity {
     forma_de_pago!: string
 
     @Property()
-    importe!: string
+    importe!: number
 
     @ManyToOne(()=>Veterinario, {nullable:false})
     veterinario!: Rel<Veterinario>;

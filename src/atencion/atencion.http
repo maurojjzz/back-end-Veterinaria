@@ -1,0 +1,30 @@
+### GET ALL
+GET http://localhost:3000/api/atenciones
+
+### GET ONE
+GET http://localhost:3000/api/atenciones/6545a58dd5b633d5687f4e2f
+
+### CREATE
+POST http://localhost:3000/api/atenciones
+Content-Type: application/json
+
+{
+   "fecha_hora_atencion": "2023-11-12T15:30:00",
+   "forma_de_pago": "Debito",
+   "importe": 1850,
+   "veterinario": "6533f156ec66df25f176150f",
+   "mascota": "654557004c3aa82f3476cc66",
+   "practicas": ["6535e1dcc3f120197defbe02"]
+}
+
+### MODIFY
+PUT  http://localhost:3000/api/atenciones/6545a58dd5b633d5687f4e2f
+Content-Type: application/json
+
+{
+    "practicas": ["6535e1dcc3f120197defbe02", "6535e20ac3f120197defbe03"]
+}
+
+
+### DELETE
+DELETE http://localhost:3000/api/atenciones/6545a53dd5b633d5687f4e2e
