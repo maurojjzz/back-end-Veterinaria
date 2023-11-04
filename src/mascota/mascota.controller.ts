@@ -11,7 +11,8 @@ async function sanitizeMascotaInput(req:Request, res:Response, next:NextFunction
         sexo: req.body.sexo,
         fecha_nacimiento: req.body.fecha_nacimiento,
         owner: req.body.owner,
-        raza: req.body.raza
+        raza: req.body.raza,
+        atenciones: req.body.atenciones
     }
     Object.keys(req.body.sanitizedInput).forEach(key => {
         if(req.body.sanitizedInput[key] === undefined){
@@ -23,7 +24,7 @@ async function sanitizeMascotaInput(req:Request, res:Response, next:NextFunction
 
 async function findAll(req:Request, res:Response){
     try {
-        const usuarios = await em.find(Mascota, {}, {populate:['owner', 'raza']})
+        const usuarios = await em.find(Mascota, {}, {populate:['owner', 'raza', 'atenciones']})
         res.status(200).json({
             message: 'Mascotas encontradas',
             data:usuarios
@@ -38,7 +39,7 @@ async function findAll(req:Request, res:Response){
 async function findOne(req:Request, res:Response ){
     try {
         const id = req.params.id;
-        const usuario = await em.findOneOrFail(Mascota, {id}, {populate:['owner', 'raza']});
+        const usuario = await em.findOneOrFail(Mascota, {id}, {populate:['owner', 'raza', 'atenciones']});
         res.status(200).json({
             message:'Mascota encontrada',
             data:usuario

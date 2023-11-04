@@ -7,7 +7,8 @@ em.getRepository(Practica);
 
 function sanitizeEspecieInput(req:Request, res:Response, next:NextFunction){
     req.body.sanitizedInput = {
-        descripcion: req.body.descripcion
+        descripcion: req.body.descripcion,
+        atenciones: req.body.atenciones
     }
     Object.keys(req.body.sanitizedInput).forEach(key => {
         if(req.body.sanitizedInput[key] === undefined){
@@ -19,7 +20,7 @@ function sanitizeEspecieInput(req:Request, res:Response, next:NextFunction){
 
 async function findAll(req: Request, res: Response) {
     try {
-        const practica = await em.find(Practica, {});
+        const practica = await em.find(Practica, {}, {populate:['atenciones']});
         res.status(200).json({
             message: 'Practicas encontradas',
             data: practica
@@ -34,7 +35,7 @@ async function findAll(req: Request, res: Response) {
 async function findOne(req: Request, res: Response) {
     try {
         const id = req.params.id;
-        const practica = await em.findOneOrFail(Practica, { id });
+        const practica = await em.findOneOrFail(Practica, { id }, {populate:['atenciones']});
         res.status(200).json({
             message: 'Práctica encontrada',
             data: practica

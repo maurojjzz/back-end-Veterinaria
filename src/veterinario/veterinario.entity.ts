@@ -1,6 +1,7 @@
-import {Entity, Property, ManyToOne, Rel} from '@mikro-orm/core';
+import {Entity, Property, ManyToOne, Rel, ManyToMany, Collection, OneToMany, Cascade} from '@mikro-orm/core';
 import { BaseEntity } from '../shared/db/baseEntity.js';
 import { Rol } from '../rol/rol.entity.js';
+import { Atencion } from '../atencion/atencion.entity.js';
 
 @Entity()
 export class Veterinario extends BaseEntity{
@@ -28,5 +29,9 @@ export class Veterinario extends BaseEntity{
 
     @ManyToOne(()=> Rol, {nullable:false})
     rol!: Rel<Rol>;
+
+    @OneToMany(()=>Atencion, ate => ate.veterinario, {cascade:[Cascade.ALL]})
+    atenciones =  new Collection<Atencion>(this)
+
 
 }
