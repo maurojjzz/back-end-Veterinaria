@@ -1,15 +1,15 @@
 import { Request, Response, NextFunction } from "express";
-import {Practica } from "./practica.entity.js";
+import { Precio } from "./precio.entity.js";
 import { orm } from "../shared/db/orm.js";
 
 const em = orm.em;
-em.getRepository(Practica);
+em.getRepository(Precio);
 
 function sanitizePrecioInput(req:Request, res:Response, next:NextFunction){
     req.body.sanitizedInput = {
-        descripcion: req.body.descripcion,
-        atenciones: req.body.atenciones,
-        precios: req.body.precios
+        fecha: req.body.fecha,
+        valor: req.body.valor,
+        practica: req.body.practica
     }
     Object.keys(req.body.sanitizedInput).forEach(key => {
         if(req.body.sanitizedInput[key] === undefined){
@@ -21,10 +21,10 @@ function sanitizePrecioInput(req:Request, res:Response, next:NextFunction){
 
 async function findAll(req: Request, res: Response) {
     try {
-        const practica = await em.find(Practica, {}, {populate:['atenciones','precios']});
+        const precios = await em.find(Precio, {}, {populate:['practica']});
         res.status(200).json({
-            message: 'Practicas encontradas',
-            data: practica
+            message: 'Precios encontrados',
+            data: precios
         });
     } catch (error: any) {
         res.status(500).json({
@@ -36,10 +36,10 @@ async function findAll(req: Request, res: Response) {
 async function findOne(req: Request, res: Response) {
     try {
         const id = req.params.id;
-        const practica = await em.findOneOrFail(Practica, { id }, {populate:['atenciones','precios']});
+        const precio = await em.findOneOrFail(Precio, { id }, {populate:['practica']});
         res.status(200).json({
-            message: 'Práctica encontrada',
-            data: practica
+            message: 'Precio encontrada',
+            data: precio
         })
     } catch (error: any) {
         res.status(500).json({
@@ -51,11 +51,11 @@ async function findOne(req: Request, res: Response) {
 
 async function add(req: Request, res: Response) {
     try {
-        const newPractica = em.create(Practica, req.body.sanitizedInput);
+        const newPrecio = em.create(Precio, req.body.sanitizedInput);
         await em.flush();
         return res.status(201).json({
-            message: 'Práctica creada',
-            data: newPractica
+            message: 'Precio creado',
+            data: newPrecio
         });
     } catch (error: any) {
         res.status(500).json({
@@ -67,12 +67,12 @@ async function add(req: Request, res: Response) {
 async function update(req: Request, res: Response) {
     try {
         const id = req.params.id;
-        const practica = await em.findOneOrFail(Practica, {id});
-        em.assign(practica, req.body.sanitizedInput);
+        const precio = await em.findOneOrFail(Precio, {id});
+        em.assign(precio, req.body.sanitizedInput);
         await em.flush();
         res.status(200).send({
-            message: 'Práctica actualizada correctamente',
-            data: practica
+            message: 'Precio actualizado correctamente',
+            data: precio
         });
     } catch (error: any) {
         res.status(500).json({
@@ -84,10 +84,10 @@ async function update(req: Request, res: Response) {
 async function remove(req: Request, res: Response) {
     try {
         const id = req.params.id;
-        const practicaToDelete = await em.getReference(Practica, id);
-        em.removeAndFlush(practicaToDelete);
+        const precioToDelete = await em.getReference(Precio, id);
+        em.removeAndFlush(precioToDelete);
         res.status(200).json({
-            message: 'Practica eliminada correctamente'
+            message: 'Precio eliminado correctamente'
         })
     } catch (error: any) {
         res.status(500).json({
