@@ -14,7 +14,8 @@ function sanitizeVeterinarioInput(req:Request, res:Response, next:NextFunction){
         email: req.body.email, 
         password: req.body.password,
         nro_doc: req.body.nro_doc,
-        rol: req.body.rol
+        rol: req.body.rol,
+        atenciones: req.body.atenciones
     }
     Object.keys(req.body.sanitizedInput).forEach(key => {
         if(req.body.sanitizedInput[key] === undefined){
@@ -26,7 +27,7 @@ function sanitizeVeterinarioInput(req:Request, res:Response, next:NextFunction){
 
 async function findAll(req:Request, res:Response){
     try {
-        const veterinarios = await em.find(Veterinario, {}, {populate:['rol']})
+        const veterinarios = await em.find(Veterinario, {}, {populate:['rol', 'atenciones']})
         return res.status(200).json({
             message:"Veterinarios encontrados",
             data: veterinarios
@@ -42,7 +43,7 @@ async function findAll(req:Request, res:Response){
 async function findOne(req:Request, res:Response ){
     try {
         const id = req.params.id;
-        const veterinario = await em.findOneOrFail(Veterinario, {id}, {populate:['rol']})
+        const veterinario = await em.findOneOrFail(Veterinario, {id}, {populate:['rol', 'atenciones']})
         return res.status(200).json({
             message:`Veterinario con ID ${id} encontrado`,
             data: veterinario

@@ -1,0 +1,27 @@
+### GET ALL
+GET http://localhost:3000/api/raza
+
+### GET ONE
+GET http://localhost:3000/api/raza/6545564b4c3aa82f3476cc64
+
+### CREATE
+POST http://localhost:3000/api/raza
+Content-Type: application/json
+
+{
+   "descripcion": "Sin raza",
+   "especie": "654539ed0a3f65743cef870f"
+}
+
+### MODIFY
+PUT  http://localhost:3000/api/raza/65454808668b9af16222a47e
+Content-Type: application/json
+
+{
+    "descripcion":"Persa",
+    "especie": "654545e83cc93334b7afb54f"
+}
+
+
+### DELETE
+DELETE http://localhost:3000/api/raza/6545509e3016f1121dabc120

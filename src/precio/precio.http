@@ -1,0 +1,28 @@
+### mostrar todas las prácticas
+GET http://localhost:3000/api/precios
+
+### traer una práctica en concreto
+GET http://localhost:3000/api/precios/6535e1dcc3f120197defbe02
+
+### crear una práctica
+POST http://localhost:3000/api/precios
+Content-Type: application/json
+
+{
+    "fecha": "2023-10-03",
+    "valor": 10500.99,
+    "practica": "6535e1dcc3f120197defbe02"
+        
+}
+
+### modificar una práctica
+PUT http://localhost:3000/api/precios/6545b26bcc196071e8e597bf
+Content-Type: application/json
+
+{       
+    "fecha": "2023-08-03",
+    "valor": 900
+}
+
+### eliminar una práctica
+DELETE http://localhost:3000/api/precios/6545b2a6cc196071e8e597c0
