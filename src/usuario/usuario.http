@@ -11,12 +11,12 @@ Content-Type: application/json
 {
     "nombre": "Patalia",
     "apellido": "Neluso",
-    "email": "calambre@gmail.com", 
+    "email": "calambres@gmail.com", 
     "password": "Password1",
     "telefono": "198997919",
     "nro_doc": "4276728",
     "direccion": "Buenos Aires 6179",
-    "rol": "65334d6048ec52ff5e08c859"
+    "rol": "65334d8d48ec52ff5e08c85a"
 }
 
 ### modificar un usuario - PUT
