@@ -1,11 +1,11 @@
 ### GET ALL
-GET http://localhost:3000/api/atenciones
+GET http://localhost:3080/api/atenciones
 
 ### GET ONE
-GET http://localhost:3000/api/atenciones/6545a58dd5b633d5687f4e2f
+GET http://localhost:3080/api/atenciones/6545a58dd5b633d5687f4e2f
 
 ### CREATE
-POST http://localhost:3000/api/atenciones
+POST http://localhost:3080/api/atenciones
 Content-Type: application/json
 
 {
@@ -18,7 +18,7 @@ Content-Type: application/json
 }
 
 ### MODIFY
-PUT  http://localhost:3000/api/atenciones/6545a58dd5b633d5687f4e2f
+PUT  http://localhost:3080/api/atenciones/6545a58dd5b633d5687f4e2f
 Content-Type: application/json
 
 {
@@ -27,4 +27,4 @@ Content-Type: application/json
 
 
 ### DELETE
-DELETE http://localhost:3000/api/atenciones/6545a53dd5b633d5687f4e2e
+DELETE http://localhost:3080/api/atenciones/6545a53dd5b633d5687f4e2e

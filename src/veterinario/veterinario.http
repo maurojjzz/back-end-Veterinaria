@@ -1,11 +1,11 @@
 ### mostrar todos los veterinarios
-GET http://localhost:3000/api/veterinarios
+GET http://localhost:3080/api/veterinarios
 
 ### traer un solo veterinario
-GET http://localhost:3000/api/veterinarios/6533f156ec66df25f176150f
+GET http://localhost:3080/api/veterinarios/6533f156ec66df25f176150f
 
 ### crear un veterinario
-POST http://localhost:3000/api/veterinarios
+POST http://localhost:3080/api/veterinarios
 Content-Type: application/json
 
 {
@@ -20,7 +20,7 @@ Content-Type: application/json
 }
 
 ### modificar un veterinario
-PUT http://localhost:3000/api/veterinarios/6533f26d059dedfac38f97ac
+PUT http://localhost:3080/api/veterinarios/6533f26d059dedfac38f97ac
 Content-Type: application/json
 
 {
@@ -35,4 +35,4 @@ Content-Type: application/json
 
 
 ### eliminar un veterinario
-DELETE http://localhost:3000/api/veterinarios/6533f2bdde367cdb2a479f33
+DELETE http://localhost:3080/api/veterinarios/6533f2bdde367cdb2a479f33
