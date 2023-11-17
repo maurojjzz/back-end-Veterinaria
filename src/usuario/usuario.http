@@ -1,6 +1,7 @@
 ### obtener todos los usuarios
 GET http://localhost:3080/api/usuarios
 
+
 ### Obtener un usuario
 GET http://localhost:3080/api/usuarios/653347dd1c7d492e38aca249
 

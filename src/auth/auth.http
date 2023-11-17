@@ -1,0 +1,14 @@
+### probar el token
+GET http://localhost:3080/arr
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoicGVpdG8iLCJpYXQiOjE3MDAwMDMxMjZ9.oAL0d3_mNJ3UAeJXiomdTtuRhO3N05_oik1KgxppaNI
+
+### POST
+POST http://localhost:3080/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "emilia@mernes.mp3", 
+    "password": "Iconica123"
+}
+
+###
