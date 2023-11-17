@@ -2,18 +2,8 @@
 GET http://localhost:3080/arr
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoicGVpdG8iLCJpYXQiOjE3MDAwMDMxMjZ9.oAL0d3_mNJ3UAeJXiomdTtuRhO3N05_oik1KgxppaNI
 
-### Cagada
-
-POST http://localhost:3080/login
-Content-Type: application/json
-
-{
-    "username": "peito"
-}
-
 ### POST
-
-POST http://localhost:3080/api/auth/auth
+POST http://localhost:3080/api/auth/login
 Content-Type: application/json
 
 {
