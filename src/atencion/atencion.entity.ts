@@ -3,6 +3,7 @@ import { BaseEntity } from "../shared/db/baseEntity.js";
 import { Veterinario } from "../veterinario/veterinario.entity.js";
 import { Mascota } from "../mascota/mascota.entity.js";
 import { Practica } from "../practica/practica.entity.js";
+import { Pago } from "../pago/pago.entity.js";
 
 @Entity()
 export class Atencion extends BaseEntity {
@@ -24,5 +25,8 @@ export class Atencion extends BaseEntity {
     
     @ManyToMany(()=>Practica, (pra)=>pra.atenciones , {cascade: [Cascade.ALL], owner:true})
     practicas!: Practica[]
+
+    @OneToMany(()=>Pago, pag => pag.atencion, {cascade:[Cascade.ALL]})
+    pagos =  new Collection<Pago>(this)
 
 }

@@ -2,7 +2,7 @@
 GET http://localhost:3080/api/atenciones
 
 ### GET ONE
-GET http://localhost:3080/api/atenciones/6545a58dd5b633d5687f4e2f
+GET http://localhost:3080/api/atenciones/6533477b1c7d492e38aca248
 
 ### CREATE
 POST http://localhost:3080/api/atenciones
@@ -27,4 +27,4 @@ Content-Type: application/json
 
 
 ### DELETE
-DELETE http://localhost:3080/api/atenciones/6545a53dd5b633d5687f4e2e
+DELETE http://localhost:3080/api/atenciones/655fbb66a7478887dadff6d4
