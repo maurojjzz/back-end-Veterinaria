@@ -9,6 +9,7 @@ import { mascotaRouter } from "./mascota/mascota.routes.js";
 import { atencionRouter } from "./atencion/atencion.routes.js";
 import { precioRouter } from "./precio/precio.routes.js";
 import { authRouter } from "./auth/auth.routes.js";
+import { pagoRouter } from "./pago/pago.routes.js";
 const router = express.Router();
 router
     .use('/usuarios', usuarioRouter)
@@ -20,6 +21,7 @@ router
     .use('/mascotas', mascotaRouter)
     .use('/atenciones', atencionRouter)
     .use('/precios', precioRouter)
-    .use('/auth', authRouter);
+    .use('/auth', authRouter)
+    .use('/pagos', pagoRouter);
 export { router as indexRouter };
 //# sourceMappingURL=routes.js.map

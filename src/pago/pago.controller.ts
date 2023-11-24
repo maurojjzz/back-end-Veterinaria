@@ -1,19 +1,18 @@
 import { Request, Response, NextFunction } from "express";
-import { Atencion } from "./atencion.entity.js";
+import { Pago } from "./pago.entity.js";
 import { orm } from "../shared/db/orm.js";
 
 const em= orm.em;
-em.getRepository(Atencion);
+em.getRepository(Pago);
 
-async function sanitizeAtencionInput(req:Request, res:Response, next:NextFunction){
+async function sanitizePagoInput(req:Request, res:Response, next:NextFunction){
     req.body.sanitizedInput = {         
-        fecha_hora_atencion: req.body.fecha_hora_atencion,
+        importe: req.body.importe,
         forma_de_pago: req.body.forma_de_pago,
-        importe: req.body.importe, 
-        veterinario: req.body.veterinario,
-        mascota: req.body.mascota,
-        practicas: req.body.practicas,
-        pagos:req.body.pagos
+        cuotas: req.body.cuotas, 
+        nro_cuota: req.body.nro_cuota,
+        fecha_hora_pago: req.body.fecha_hora_pago,
+        atencion: req.body.atencion,
     }
     Object.keys(req.body.sanitizedInput).forEach(key => {
         if(req.body.sanitizedInput[key] === undefined){
@@ -25,10 +24,10 @@ async function sanitizeAtencionInput(req:Request, res:Response, next:NextFunctio
 
 async function findAll(req:Request, res:Response){
     try {
-        const atenciones = await em.find(Atencion, {}, {populate:['veterinario', 'mascota', 'practicas', 'pagos']})
+        const pagos = await em.find(Pago, {}, {populate:['atencion']})
         res.status(200).json({
-            message: 'Atenciones encontradas',
-            data:atenciones
+            message: 'Pagos encontrados',
+            data:pagos
         });
     } catch (error:any) {
         res.status(500).json({
@@ -40,10 +39,10 @@ async function findAll(req:Request, res:Response){
 async function findOne(req:Request, res:Response ){
     try {
         const id = req.params.id;
-        const atencion = await em.findOneOrFail(Atencion, {id}, {populate:['veterinario', 'mascota', 'practicas', 'pagos']});
+        const pago = await em.findOneOrFail(Pago, {id}, {populate:['atencion']});
         res.status(200).json({
-            message:'Atencion encontrada',
-            data:atencion
+            message:'Pago encontrado',
+            data:pago
         })
     } catch (error:any) {
         res.status(500).json({
@@ -54,11 +53,11 @@ async function findOne(req:Request, res:Response ){
 
 async function add(req:Request, res:Response){
     try {
-        const newAtte = em.create(Atencion, req.body.sanitizedInput)
+        const newPago = em.create(Pago, req.body.sanitizedInput)
         await em.flush();
         return res.status(201).json({
-            message:'Atencion creada',
-            data: newAtte
+            message:'Pago creado',
+            data: newPago
         });
     } catch (error:any) {
         res.status(500).json({
@@ -70,12 +69,12 @@ async function add(req:Request, res:Response){
 async function update(req:Request, res:Response){
     try {
         const id = req.params.id;
-        const atencion = await em.findOneOrFail(Atencion, {id})
-        em.assign(atencion, req.body.sanitizedInput)
+        const pago = await em.findOneOrFail(Pago, {id})
+        em.assign(pago, req.body.sanitizedInput)
         await em.flush();
         res.status(200).send({
-            message: 'Atencion actualizada correctamente',
-            data: atencion
+            message: 'Pago actualizado correctamente',
+            data: pago
         });
     } catch (error:any) {
         res.status(500).json({
@@ -87,10 +86,10 @@ async function update(req:Request, res:Response){
 async function remove(req:Request, res:Response){
     try {
         const id = req.params.id;
-        const atencionToDelete = await em.getReference(Atencion, id);
-        em.removeAndFlush(atencionToDelete)
+        const pagoToDelete = await em.getReference(Pago, id);
+        em.removeAndFlush(pagoToDelete)
         res.status(200).json({
-            message: 'Atencion eliminada correctamente'
+            message: 'Pago eliminado correctamente'
         })
     } catch (error:any) {
         res.status(500).json({
@@ -99,4 +98,4 @@ async function remove(req:Request, res:Response){
     }
 };
 
-export {sanitizeAtencionInput, findAll, findOne, add, update, remove}
+export {sanitizePagoInput, findAll, findOne, add, update, remove}

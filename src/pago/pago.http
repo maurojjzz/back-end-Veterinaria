@@ -1,0 +1,32 @@
+### GET ALL
+GET http://localhost:3080/api/pagos
+
+### GET ONE
+GET http://localhost:3080/api/pagos/655fc747fdb88e018fa38340
+
+### CREATE
+POST http://localhost:3080/api/pagos
+Content-Type: application/json
+
+{
+   "forma_de_pago": "Debito",
+   "importe": 1850,
+    "cuotas": 1, 
+    "nro_cuota": 1,
+    "atencion": "6545a4dfd5b633d5687f4e2d",
+    "fecha_hora_pago": "2023-11-20 00:00:12"
+
+}
+
+### MODIFY
+PUT  http://localhost:3080/api/pagos/655fc747fdb88e018fa38340
+Content-Type: application/json
+
+{
+    "forma_de_pago": "Efectivo",
+    "importe": 1500
+}
+
+
+### DELETE
+DELETE http://localhost:3080/api/pagos/655fc76afdb88e018fa38341

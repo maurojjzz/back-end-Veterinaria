@@ -1,9 +1,10 @@
 ### obtener todos los usuarios
 GET http://localhost:3080/api/usuarios
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzNlYWVjZDMyODlhM2YzODVhNmFiNCIsImVtYWlsIjoiY2FsYW1icmVAZ21haWwuY29tIiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNzAwNzcxNDk2LCJleHAiOjE3MDA3NzIzOTZ9.aemimdlVw5RJRuCEa9d1NY3SKf9EcEkwM2vpN1juLB8
 
 
 ### Obtener un usuario
-GET http://localhost:3080/api/usuarios/653347dd1c7d492e38aca249
+GET http://localhost:3080/api/usuarios/6533477b1c7d492e38aca248
 
 ### Enviar un nuevo usuario
 POST http://localhost:3000/api/usuarios
