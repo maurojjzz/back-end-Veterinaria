@@ -23,8 +23,7 @@ PUT  http://localhost:3080/api/pagos/655fc747fdb88e018fa38340
 Content-Type: application/json
 
 {
-    "forma_de_pago": "Efectivo",
-    "importe": 1500
+    "fecha_hora_pago": "2023-10-31 16:00:00"
 }
 
 

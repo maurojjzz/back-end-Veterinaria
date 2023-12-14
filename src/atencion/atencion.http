@@ -18,11 +18,11 @@ Content-Type: application/json
 }
 
 ### MODIFY
-PUT  http://localhost:3080/api/atenciones/6545a58dd5b633d5687f4e2f
+PUT  http://localhost:3080/api/atenciones/655e50184046f04d68d3d5bb
 Content-Type: application/json
 
 {
-    "practicas": ["6535e1dcc3f120197defbe02", "6535e20ac3f120197defbe03"]
+   "veterinario": "6533477b1c7d492e38aca248"
 }
 
 

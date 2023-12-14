@@ -14,11 +14,11 @@ Content-Type: application/json
 }
 
 ### modificar una práctica
-PUT http://localhost:3080/api/practicas/6535e20ec3f120197defbe04
+PUT http://localhost:3080/api/practicas/65677edf5da64c13c3780206
 Content-Type: application/json
 
 {       
-        "descripcion": "Inyección de Amoxicilina"
+        "descripcion": "Consulta general"
 }
 
 ### modificar una práctica

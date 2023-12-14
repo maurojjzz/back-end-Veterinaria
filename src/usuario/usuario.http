@@ -4,31 +4,31 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzNlYWVjZ
 
 
 ### Obtener un usuario
-GET http://localhost:3080/api/usuarios/6533477b1c7d492e38aca248
+GET http://localhost:3080/api/usuarios/656a327befec9ec6f30760de
 
 ### Enviar un nuevo usuario
-POST http://localhost:3000/api/usuarios
+POST http://localhost:3080/api/usuarios
 Content-Type: application/json
 
 {
-    "nombre": "Patalia",
-    "apellido": "Neluso",
-    "email": "calambres@gmail.com", 
+    "nombre": "Admin",
+    "apellido": "Admin",
+    "email": "admin@admin.com", 
     "password": "Password1",
-    "telefono": "198997919",
-    "nro_doc": "4276728",
-    "direccion": "Buenos Aires 6179",
+    "telefono": "1111111111",
+    "nro_doc": "11111111",
+    "direccion": "MongoDB 112",
     "rol": "65334d8d48ec52ff5e08c85a"
 }
 
 ### modificar un usuario - PUT
-PUT  http://localhost:3000/api/usuarios/653347dd1c7d492e38aca249
+PUT  http://localhost:3080/api/usuarios/656a327befec9ec6f30760de
 Content-Type: application/json
 
 {
-    "rol": "65334d8d48ec52ff5e08c85a"
+    "rol": "65334d6048ec52ff5e08c859"
 }
 
 
 ### eliminar un usuario 
-DELETE http://localhost:3000/api/usuarios/6533480f1c7d492e38aca24a
+DELETE http://localhost:3080/api/usuarios/6533480f1c7d492e38aca24a
