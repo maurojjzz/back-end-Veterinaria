@@ -9,9 +9,9 @@ POST http://localhost:3080/api/precios
 Content-Type: application/json
 
 {
-    "fecha": "2023-10-03",
-    "valor": 10500.99,
-    "practica": "6535e1dcc3f120197defbe02"
+    "fecha": "2024-12-23",
+    "valor": 12720,
+    "practica": "656a051fb0461301a47c67e5"
         
 }
 
@@ -25,4 +25,4 @@ Content-Type: application/json
 }
 
 ### eliminar una práctica
-DELETE http://localhost:3080/api/precios/6545b2a6cc196071e8e597c0
+DELETE http://localhost:3080/api/precios/6545b26bcc196071e8e597bf

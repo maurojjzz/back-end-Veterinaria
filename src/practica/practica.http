@@ -2,7 +2,7 @@
 GET http://localhost:3080/api/practicas
 
 ### traer una práctica en concreto
-GET http://localhost:3080/api/practicas/6535e1dcc3f120197defbe02
+GET http://localhost:3080/api/practicas/65579fc4fd003fd4159c4592
 
 ### crear una práctica
 POST http://localhost:3080/api/practicas
