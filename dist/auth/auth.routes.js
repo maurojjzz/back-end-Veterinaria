@@ -1,7 +1,8 @@
 import { Router } from "express";
-import { authLogin } from "./auth.controller.js";
+import { authLogin, SignUp, sanitizeAuthInput } from "./auth.controller.js";
 const authRouter = Router();
 authRouter
-    .post("/login", authLogin);
+    .post("/login", sanitizeAuthInput, authLogin)
+    .post("/signup", sanitizeAuthInput, SignUp);
 export { authRouter };
 //# sourceMappingURL=auth.routes.js.map

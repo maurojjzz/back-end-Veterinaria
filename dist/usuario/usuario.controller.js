@@ -1,5 +1,6 @@
 import { Usuario } from "./usuario.entity.js";
 import { orm } from "../shared/db/orm.js";
+import bcrypt from "bcrypt";
 const em = orm.em;
 em.getRepository(Usuario);
 async function sanitizeUsuarioInput(req, res, next) {
@@ -54,6 +55,10 @@ async function findOne(req, res) {
 ;
 async function add(req, res) {
     try {
+        const { password } = req.body.sanitizedInput;
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+        req.body.sanitizedInput.password = hashedPassword;
         const newUser = em.create(Usuario, req.body.sanitizedInput);
         await em.flush();
         return res.status(201).json({
@@ -72,6 +77,11 @@ async function update(req, res) {
     try {
         const id = req.params.id;
         const user = await em.findOneOrFail(Usuario, { id });
+        if (req.body.sanitizedInput.password) {
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(req.body.sanitizedInput.password, salt);
+            req.body.sanitizedInput.password = hashedPassword;
+        }
         em.assign(user, req.body.sanitizedInput);
         await em.flush();
         res.status(200).send({
