@@ -1,107 +1,122 @@
 import { Request, Response, NextFunction } from "express";
 import { Veterinario } from "./veterinario.entity.js";
 import { orm } from "../shared/db/orm.js";
+import bcrypt from "bcrypt";
 
 const em = orm.em;
 em.getRepository(Veterinario);
 
-function sanitizeVeterinarioInput(req:Request, res:Response, next:NextFunction){
+function sanitizeVeterinarioInput(req: Request, res: Response, next: NextFunction) {
     req.body.sanitizedInput = {
         matricula: req.body.matricula,
         apellido: req.body.apellido,
         nombre: req.body.nombre,
         telefono: req.body.telefono,
-        email: req.body.email, 
+        email: req.body.email,
         password: req.body.password,
         nro_doc: req.body.nro_doc,
         rol: req.body.rol,
         atenciones: req.body.atenciones
     }
     Object.keys(req.body.sanitizedInput).forEach(key => {
-        if(req.body.sanitizedInput[key] === undefined){
+        if (req.body.sanitizedInput[key] === undefined) {
             delete req.body.sanitizedInput[key]
         }
-    } )
+    })
     next();
 }
 
-async function findAll(req:Request, res:Response){
+async function findAll(req: Request, res: Response) {
     try {
-        const veterinarios = await em.find(Veterinario, {}, {populate:['rol', 'atenciones']})
+        const veterinarios = await em.find(Veterinario, {}, { populate: ['rol', 'atenciones'] })
         return res.status(200).json({
-            message:"Veterinarios encontrados",
+            message: "Veterinarios encontrados",
             data: veterinarios
         });
-    } catch (error:any) {
+    } catch (error: any) {
         res.status(500).json({
-            message:error.message
+            message: error.message
         })
     }
-    
+
 };
 
-async function findOne(req:Request, res:Response ){
+async function findOne(req: Request, res: Response) {
     try {
         const id = req.params.id;
-        const veterinario = await em.findOneOrFail(Veterinario, {id}, {populate:['rol', 'atenciones']})
+        const veterinario = await em.findOneOrFail(Veterinario, { id }, { populate: ['rol', 'atenciones'] })
         return res.status(200).json({
-            message:`Veterinario con ID ${id} encontrado`,
+            message: `Veterinario con ID ${id} encontrado`,
             data: veterinario
         })
-    } catch (error:any) {
+    } catch (error: any) {
         res.status(500).json({
-            message:error.message
+            message: error.message
         })
     }
 };
 
 
-async function add(req:Request, res:Response){
+async function add(req: Request, res: Response) {
     try {
+
+        const { password } = req.body.sanitizedInput;
+
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+        req.body.sanitizedInput.password = hashedPassword;
+
         const newVet = em.create(Veterinario, req.body.sanitizedInput);
         await em.flush();
         return res.status(201).json({
-            message:'Veterinario creado',
-            data:newVet
+            message: 'Veterinario creado',
+            data: newVet
         })
-    } catch (error:any) {
+    } catch (error: any) {
         res.status(500).json({
-            message:error.message
+            message: error.message
         })
     }
 };
 
-async function update(req:Request, res:Response){
+async function update(req: Request, res: Response) {
     try {
         const id = req.params.id;
-        const vet = await em.findOneOrFail(Veterinario, {id});
+        const vet = await em.findOneOrFail(Veterinario, { id });
+
+        if (req.body.sanitizedInput.password) {
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(req.body.sanitizedInput.password, salt);
+            req.body.sanitizedInput.password = hashedPassword;
+        }
+
         em.assign(vet, req.body.sanitizedInput);
         await em.flush();
         return res.status(200).json({
-            message:`Veterinario actualizado correctamente`,
-            data:vet
+            message: `Veterinario actualizado correctamente`,
+            data: vet
         })
-    } catch (error:any) {
+    } catch (error: any) {
         res.status(500).json({
-            message:error.message
+            message: error.message
         })
     }
 };
 
-async function remove(req:Request, res:Response){
+async function remove(req: Request, res: Response) {
     try {
         const id = req.params.id;
         const vetToDelete = await em.getReference(Veterinario, id)
         await em.removeAndFlush(vetToDelete)
         return res.status(200).json({
-            message:`Veterinario eliminado correctamente`
+            message: `Veterinario eliminado correctamente`
         })
-    } catch (error:any) {
+    } catch (error: any) {
         res.status(500).json({
-            message:error.message
+            message: error.message
         })
     }
 };
 
 
-export {findAll, findOne, add, sanitizeVeterinarioInput, update, remove}
+export { findAll, findOne, add, sanitizeVeterinarioInput, update, remove }
