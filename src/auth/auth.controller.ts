@@ -83,8 +83,7 @@ export const SignUp = async (req: Request, res: Response) => {
 
 
         res.status(201).json({
-            message: "Usuario creado con exito",
-            data: newUser
+            message: "Usuario creado con exito"
         })
 
     } catch (error: any) {

@@ -72,8 +72,7 @@ export const SignUp = async (req, res) => {
         const newUser = em.create(Usuario, { ...req.body.sanitizedInput, password: hashedPassword, rol: process.env.USER_TYPE_ID });
         await em.flush();
         res.status(201).json({
-            message: "Usuario creado con exito",
-            data: newUser
+            message: "Usuario creado con exito"
         });
     }
     catch (error) {
