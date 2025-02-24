@@ -39,7 +39,7 @@ export const authLogin = async (req: Request, res: Response) => {
         
         if (contraseñaValida) {
             if (email === usuario.email) {
-                const user = { id: usuario.id, email: email, role: usuario.rol.descripcion };
+                const user = { id: usuario.id, email: email, name: `${usuario.nombre} ${usuario.apellido}`, role: usuario.rol.descripcion };
                 const accessToken = generateAccessToken(user);
 
                 res.header('authorization', accessToken).json({
