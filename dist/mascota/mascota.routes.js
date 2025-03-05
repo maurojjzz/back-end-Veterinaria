@@ -3,7 +3,7 @@ import { sanitizeMascotaInput, add, findAll, findOne, remove, update } from "./m
 import { validateToken } from "../shared/middleware/auth.middleware.js";
 const mascotaRouter = Router();
 mascotaRouter
-    .get('/', findAll)
+    .get('/', validateToken, findAll)
     .get('/:id', findOne)
     .post('/', validateToken, sanitizeMascotaInput, add)
     .put('/:id', validateToken, sanitizeMascotaInput, update)

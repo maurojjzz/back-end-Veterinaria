@@ -6,7 +6,7 @@ import { validateToken } from "../shared/middleware/auth.middleware.js";
 const precioRouter = Router();
 
 precioRouter
-    .get('/', findAll)
+    .get('/', validateToken, findAll)
     .get('/:id', findOne)
     .post('/', validateToken, sanitizePrecioInput, add)
     .put('/:id', validateToken, sanitizePrecioInput, update)
