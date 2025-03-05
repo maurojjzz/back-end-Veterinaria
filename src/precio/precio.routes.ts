@@ -1,14 +1,16 @@
 import { Router } from "express";
 import { sanitizePrecioInput, add, findAll, findOne, remove, update } from "./precio.controller.js";
+import { validateToken } from "../shared/middleware/auth.middleware.js";
+
 
 const precioRouter = Router();
 
 precioRouter
     .get('/', findAll)
     .get('/:id', findOne)
-    .post('/', sanitizePrecioInput, add)
-    .put('/:id', sanitizePrecioInput, update)
-    .patch('/:id', sanitizePrecioInput, update)
-    .delete('/:id', remove);
+    .post('/', validateToken, sanitizePrecioInput, add)
+    .put('/:id', validateToken, sanitizePrecioInput, update)
+    .patch('/:id', validateToken, sanitizePrecioInput, update)
+    .delete('/:id', validateToken, remove);
 
-export {precioRouter}
+export { precioRouter }
