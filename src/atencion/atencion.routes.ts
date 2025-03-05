@@ -6,7 +6,7 @@ import { validateToken } from "../shared/middleware/auth.middleware.js";
 const atencionRouter = Router();
 
 atencionRouter
-    .get('/', findAll)
+    .get('/',validateToken, findAll)
     .get('/:id', findOne)
     .post('/', validateToken, sanitizeAtencionInput, add)
     .put('/:id', validateToken, sanitizeAtencionInput, update)

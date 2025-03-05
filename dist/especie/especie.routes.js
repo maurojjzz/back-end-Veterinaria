@@ -3,7 +3,7 @@ import { sanitizeEspecieInput, add, findAll, findOne, remove, update } from "./e
 import { validateToken } from "../shared/middleware/auth.middleware.js";
 const EspecieRouter = Router();
 EspecieRouter
-    .get('/', findAll)
+    .get('/', validateToken, findAll)
     .get('/:id', findOne)
     .post('/', validateToken, sanitizeEspecieInput, add)
     .put('/:id', validateToken, sanitizeEspecieInput, update)

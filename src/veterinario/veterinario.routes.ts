@@ -6,11 +6,11 @@ import { validateToken } from "../shared/middleware/auth.middleware.js";
 const veterinaryRouter = Router();
 
 veterinaryRouter
-    .get('/', findAll)
+    .get('/', validateToken, findAll)
     .get('/:id', findOne)
-    .post('/',validateToken, sanitizeVeterinarioInput, add)
-    .put('/:id',validateToken, sanitizeVeterinarioInput, update)
-    .patch('/:id',validateToken, sanitizeVeterinarioInput, update)
-    .delete('/:id',validateToken, remove)
+    .post('/', validateToken, sanitizeVeterinarioInput, add)
+    .put('/:id', validateToken, sanitizeVeterinarioInput, update)
+    .patch('/:id', validateToken, sanitizeVeterinarioInput, update)
+    .delete('/:id', validateToken, remove)
 
 export { veterinaryRouter }

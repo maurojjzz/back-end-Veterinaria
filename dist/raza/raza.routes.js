@@ -3,7 +3,7 @@ import { sanitizeRazaInput, add, findAll, findOne, remove, update } from "./raza
 import { validateToken } from "../shared/middleware/auth.middleware.js";
 const razaRouter = Router();
 razaRouter
-    .get('/', findAll)
+    .get('/', validateToken, findAll)
     .get('/:id', findOne)
     .post('/', validateToken, sanitizeRazaInput, add)
     .put('/:id', validateToken, sanitizeRazaInput, update)
