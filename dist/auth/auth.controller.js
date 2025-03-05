@@ -80,6 +80,6 @@ export const SignUp = async (req, res) => {
     }
 };
 const generateAccessToken = (user) => {
-    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1m' });
+    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '20m' });
 };
 //# sourceMappingURL=auth.controller.js.map
