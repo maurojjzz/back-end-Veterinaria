@@ -1,14 +1,16 @@
 import { Router } from "express";
 import { sanitizeEspecieInput, add, findAll, findOne, remove, update } from "./especie.controller.js";
+import { validateToken } from "../shared/middleware/auth.middleware.js";
+
 
 const EspecieRouter = Router();
 
 EspecieRouter
     .get('/', findAll)
     .get('/:id', findOne)
-    .post('/', sanitizeEspecieInput, add)
-    .put('/:id', sanitizeEspecieInput, update)
-    .patch('/:id', sanitizeEspecieInput, update)
-    .delete('/:id', remove);
+    .post('/', validateToken, sanitizeEspecieInput, add)
+    .put('/:id', validateToken, sanitizeEspecieInput, update)
+    .patch('/:id', validateToken, sanitizeEspecieInput, update)
+    .delete('/:id', validateToken, remove);
 
-export {EspecieRouter}
+export { EspecieRouter }

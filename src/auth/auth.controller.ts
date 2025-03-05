@@ -98,5 +98,5 @@ export const SignUp = async (req: Request, res: Response) => {
 
 const generateAccessToken = (user: any) => {
 
-    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET!, { expiresIn: '15m' })
+    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET!, { expiresIn: '1m' })
 }

@@ -6,8 +6,8 @@ usuarioRouter
     .get('/', validateToken, findAll)
     .get('/:id', findOne)
     .post('/', sanitizeUsuarioInput, add)
-    .put('/:id', sanitizeUsuarioInput, update)
-    .patch('/:id', sanitizeUsuarioInput, update)
-    .delete('/:id', remove);
+    .put('/:id', validateToken, sanitizeUsuarioInput, update)
+    .patch('/:id', validateToken, sanitizeUsuarioInput, update)
+    .delete('/:id', validateToken, remove);
 export { usuarioRouter };
 //# sourceMappingURL=usuario.routes.js.map
