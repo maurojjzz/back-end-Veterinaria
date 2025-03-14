@@ -1,4 +1,5 @@
 import { Usuario } from "../usuario/usuario.entity.js";
+import { Veterinario } from "../veterinario/veterinario.entity.js";
 import { orm } from "../shared/db/orm.js";
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
@@ -27,16 +28,23 @@ export async function sanitizeAuthInput(req, res, next) {
 export const authLogin = async (req, res) => {
     try {
         const { email, password } = req.body.sanitizedInput;
-        const usuario = await em.findOneOrFail(Usuario, { email }, { populate: ['rol', 'mascotas'] });
+        let usuario = await em.findOne(Usuario, { email }, { populate: ['rol', 'mascotas'] });
+        let tipo = usuario ? usuario.rol.descripcion : "Veterinario";
+        if (!usuario) {
+            usuario = await em.findOne(Veterinario, { email }, { populate: ['rol', 'atenciones'] });
+        }
+        if (!usuario) {
+            return res.status(404).json({ error: "Usuario no encontrado" });
+        }
         const contraseñaValida = await bcrypt.compare(password, usuario.password);
         if (contraseñaValida) {
             if (email === usuario.email) {
-                const user = { id: usuario.id, email: email, name: `${usuario.nombre} ${usuario.apellido}`, role: usuario.rol.descripcion };
+                const user = { id: usuario.id, email: email, name: `${usuario.nombre} ${usuario.apellido}`, role: tipo };
                 const accessToken = generateAccessToken(user);
                 res.header('authorization', accessToken).json({
                     message: "Usuario auntenticado",
                     token: accessToken,
-                    role: usuario.rol.descripcion
+                    role: tipo
                 });
             }
             else {
