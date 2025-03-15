@@ -11,13 +11,13 @@ export class Atencion extends BaseEntity {
     @Property({nullable:false})
     fecha_hora_atencion!:Date;
 
-    @Property()
+    @Property({nullable:true})
     forma_de_pago!: string
 
-    @Property()
+    @Property({nullable:true})
     importe!: number
 
-    @ManyToOne(()=>Veterinario, {nullable:false})
+    @ManyToOne(()=>Veterinario, {nullable:true})
     veterinario!: Rel<Veterinario>;
 
     @ManyToOne(()=>Mascota, {nullable:false})
