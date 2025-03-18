@@ -4,7 +4,8 @@ const em = orm.em;
 em.getRepository(Especie);
 function sanitizeEspecieInput(req, res, next) {
     req.body.sanitizedInput = {
-        descripcion: req.body.descripcion
+        descripcion: req.body.descripcion,
+        isActive: req.body.isActive,
     };
     Object.keys(req.body.sanitizedInput).forEach(key => {
         if (req.body.sanitizedInput[key] === undefined) {

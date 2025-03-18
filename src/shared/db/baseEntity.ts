@@ -1,4 +1,4 @@
-import {PrimaryKey, SerializedPrimaryKey} from "@mikro-orm/core"
+import {PrimaryKey, Property, SerializedPrimaryKey} from "@mikro-orm/core"
 import { ObjectId } from "@mikro-orm/mongodb"
 
 export abstract class BaseEntity{
@@ -7,4 +7,8 @@ export abstract class BaseEntity{
 
     @SerializedPrimaryKey()
     id?: string;
+
+    @Property({default:true, nullable:true})
+    isActive:boolean = true;
+    
 }

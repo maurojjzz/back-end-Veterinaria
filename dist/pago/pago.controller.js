@@ -10,6 +10,7 @@ async function sanitizePagoInput(req, res, next) {
         nro_cuota: req.body.nro_cuota,
         fecha_hora_pago: req.body.fecha_hora_pago,
         atencion: req.body.atencion,
+        isActive: req.body.isActive,
     };
     Object.keys(req.body.sanitizedInput).forEach(key => {
         if (req.body.sanitizedInput[key] === undefined) {

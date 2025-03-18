@@ -10,7 +10,8 @@ async function sanitizeAtencionInput(req, res, next) {
         veterinario: req.body.veterinario,
         mascota: req.body.mascota,
         practicas: req.body.practicas,
-        pagos: req.body.pagos
+        pagos: req.body.pagos,
+        isActive: req.body.isActive,
     };
     Object.keys(req.body.sanitizedInput).forEach(key => {
         if (req.body.sanitizedInput[key] === undefined) {

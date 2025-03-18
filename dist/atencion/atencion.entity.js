@@ -24,15 +24,15 @@ __decorate([
     __metadata("design:type", Date)
 ], Atencion.prototype, "fecha_hora_atencion", void 0);
 __decorate([
-    Property(),
+    Property({ nullable: true }),
     __metadata("design:type", String)
 ], Atencion.prototype, "forma_de_pago", void 0);
 __decorate([
-    Property(),
+    Property({ nullable: true }),
     __metadata("design:type", Number)
 ], Atencion.prototype, "importe", void 0);
 __decorate([
-    ManyToOne(() => Veterinario, { nullable: false }),
+    ManyToOne(() => Veterinario, { nullable: true }),
     __metadata("design:type", Object)
 ], Atencion.prototype, "veterinario", void 0);
 __decorate([

@@ -16,7 +16,8 @@ function sanitizeVeterinarioInput(req: Request, res: Response, next: NextFunctio
         password: req.body.password,
         nro_doc: req.body.nro_doc,
         rol: req.body.rol,
-        atenciones: req.body.atenciones
+        atenciones: req.body.atenciones,
+        isActive: req.body.isActive,
     }
     Object.keys(req.body.sanitizedInput).forEach(key => {
         if (req.body.sanitizedInput[key] === undefined) {

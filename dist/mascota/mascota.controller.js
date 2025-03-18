@@ -9,7 +9,8 @@ async function sanitizeMascotaInput(req, res, next) {
         fecha_nacimiento: req.body.fecha_nacimiento,
         owner: req.body.owner,
         raza: req.body.raza,
-        atenciones: req.body.atenciones
+        atenciones: req.body.atenciones,
+        isActive: req.body.isActive,
     };
     Object.keys(req.body.sanitizedInput).forEach(key => {
         if (req.body.sanitizedInput[key] === undefined) {

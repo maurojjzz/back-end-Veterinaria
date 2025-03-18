@@ -9,7 +9,8 @@ async function sanitizeRolInput(req:Request, res:Response, next:NextFunction){
     req.body.sanitizedInput = {
         descripcion: req.body.descripcion,
         usuarios: req.body.usuarios,
-        veterinarios: req.body.veterinarios
+        veterinarios: req.body.veterinarios,
+        isActive: req.body.isActive,
     }
     Object.keys(req.body.sanitizedInput).forEach(key => {
         if(req.body.sanitizedInput[key] === undefined){

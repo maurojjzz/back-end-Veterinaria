@@ -6,7 +6,8 @@ function sanitizePrecioInput(req, res, next) {
     req.body.sanitizedInput = {
         fecha: req.body.fecha,
         valor: req.body.valor,
-        practica: req.body.practica
+        practica: req.body.practica,
+        isActive: req.body.isActive,
     };
     Object.keys(req.body.sanitizedInput).forEach(key => {
         if (req.body.sanitizedInput[key] === undefined) {

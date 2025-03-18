@@ -9,7 +9,8 @@ function sanitizePrecioInput(req:Request, res:Response, next:NextFunction){
     req.body.sanitizedInput = {
         descripcion: req.body.descripcion,
         atenciones: req.body.atenciones,
-        precios: req.body.precios
+        precios: req.body.precios,
+        isActive: req.body.isActive,
     }
     Object.keys(req.body.sanitizedInput).forEach(key => {
         if(req.body.sanitizedInput[key] === undefined){

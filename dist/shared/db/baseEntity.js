@@ -7,11 +7,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { PrimaryKey, SerializedPrimaryKey } from "@mikro-orm/core";
+import { PrimaryKey, Property, SerializedPrimaryKey } from "@mikro-orm/core";
 import { ObjectId } from "@mikro-orm/mongodb";
 export class BaseEntity {
     constructor() {
         this._id = new ObjectId();
+        this.isActive = true;
     }
 }
 __decorate([
@@ -22,4 +23,8 @@ __decorate([
     SerializedPrimaryKey(),
     __metadata("design:type", String)
 ], BaseEntity.prototype, "id", void 0);
+__decorate([
+    Property({ default: true, nullable: true }),
+    __metadata("design:type", Boolean)
+], BaseEntity.prototype, "isActive", void 0);
 //# sourceMappingURL=baseEntity.js.map

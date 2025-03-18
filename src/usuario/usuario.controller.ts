@@ -16,7 +16,8 @@ async function sanitizeUsuarioInput(req:Request, res:Response, next:NextFunction
         nro_doc: req.body.nro_doc,
         direccion: req.body.direccion,
         rol: req.body.rol,
-        mascotas: req.body.mascotas
+        mascotas: req.body.mascotas,
+        isActive: req.body.isActive,
     }
     Object.keys(req.body.sanitizedInput).forEach(key => {
         if(req.body.sanitizedInput[key] === undefined){

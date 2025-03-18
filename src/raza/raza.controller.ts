@@ -9,7 +9,8 @@ async function sanitizeRazaInput(req:Request, res:Response, next:NextFunction){
     req.body.sanitizedInput = {         
         descripcion: req.body.descripcion,
         especie: req.body.especie,
-        mascotas: req.body.mascota
+        mascotas: req.body.mascota,
+        isActive: req.body.isActive,
     }
     Object.keys(req.body.sanitizedInput).forEach(key => {
         if(req.body.sanitizedInput[key] === undefined){
