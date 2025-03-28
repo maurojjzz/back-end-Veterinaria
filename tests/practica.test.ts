@@ -1,6 +1,6 @@
 import request from "supertest";
 import { describe, it, expect, afterAll } from "vitest";
-import { app } from "../src/app"; // Asegúrate de que el path es correcto
+import { app } from "../src/app"; 
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -10,7 +10,6 @@ describe("🔬 Pruebas para la API de Prácticas", () => {
     let practicaId: string;
     let userId: string;
 
-    // Primero creamos un usuario de prueba
     it("✅ Debería crear un usuario de prueba", async () => {
         try {
             console.log("📤 Creando usuario de prueba...");
@@ -42,8 +41,6 @@ describe("🔬 Pruebas para la API de Prácticas", () => {
             throw error;
         }
     });
-
-    // Luego nos autenticamos con ese usuario
     it("✅ Debería autenticarse y obtener un token", async () => {
         try {
             console.log("🔑 Intentando autenticar usuario de prueba...");
