@@ -54,11 +54,12 @@ El gestor de paquetes NPM viene con Node.js y es necesario para este proyecto.
     ```
 2. Crea un archivo `.env` con las siguientes variables de entorno:
     ```env
-    DB_URI=mongodb+srv://vet-304-dsw:1mwu4GHek1snxoz5@veterinaria.mqiuzg1.mongodb.net/?retryWrites=true&w=majority
-    DB_NAME=VetApp
-    PORT=3080
-    ACCESS_TOKEN_SECRET=dab5b684ab2b12730dbed3d4fa014337586ce9a0ad42150c9b388bd7733613debce0357e39727edbc68359d8ea28e1be0d10705c68792d0bb296d6efb14bef3d
-    USER_TYPE_ID=65334d8d48ec52ff5e08c85a
+   DB_URI = mongodb+srv://vet-304-dsw:1mwu4GHek1snxoz5@veterinaria.mqiuzg1.mongodb.net/?retryWrites=true&w=majority
+DB_URI_TEST = mongodb+srv://maurojim123:5rNMSHY9QGELkjX5@vetapptest.tx68qeo.mongodb.net/?retryWrites=true&w=majority 
+DB_NAME = VetApp
+PORT = 3080
+ACCESS_TOKEN_SECRET = dab5b684ab2b12730dbed3d4fa014337586ce9a0ad42150c9b388bd7733613debce0357e39727edbc68359d8ea28e1be0d10705c68792d0bb296d6efb14bef3d
+USER_TYPE_ID=65334d8d48ec52ff5e08c85a
     ```
 
 ### **Corriendo la aplicación** ###
