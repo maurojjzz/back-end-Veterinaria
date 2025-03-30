@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "Veterinaria API",
+        "title": "VeterinariApp API",
         "description": "Documentación de la API de la veterinaria",
         "version": "1.0.0"
     },
@@ -106,7 +106,7 @@
                                     "example": "any"
                                 },
                                 "rol": {
-                                    "example": "any"
+                                    "example": "ObjectId"
                                 }
                             }
                         }
@@ -180,10 +180,7 @@
                                     "example": "any"
                                 },
                                 "rol": {
-                                    "example": "any"
-                                },
-                                "atenciones": {
-                                    "example": "any"
+                                    "example": "ObjectId"
                                 }
                             }
                         }
@@ -274,7 +271,7 @@
                                     "example": "any"
                                 },
                                 "rol": {
-                                    "example": "any"
+                                    "example": "ObjectId"
                                 },
                                 "atenciones": {
                                     "example": "any"
@@ -342,7 +339,7 @@
                                     "example": "any"
                                 },
                                 "rol": {
-                                    "example": "any"
+                                    "example": "ObjectId"
                                 },
                                 "atenciones": {
                                     "example": "any"
@@ -459,10 +456,7 @@
                                     "example": "any"
                                 },
                                 "rol": {
-                                    "example": "any"
-                                },
-                                "mascotas": {
-                                    "example": "any"
+                                    "example": "ObjectId"
                                 }
                             }
                         }
@@ -550,7 +544,7 @@
                                     "example": "any"
                                 },
                                 "rol": {
-                                    "example": "any"
+                                    "example": "ObjectId"
                                 },
                                 "mascotas": {
                                     "example": "any"
@@ -618,10 +612,241 @@
                                     "example": "any"
                                 },
                                 "rol": {
-                                    "example": "any"
+                                    "example": "ObjectId"
                                 },
                                 "mascotas": {
                                     "example": "any"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/atenciones/": {
+            "get": {
+                "description": "",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "post": {
+                "description": "",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "fecha_hora_atencion": {
+                                    "example": "any"
+                                },
+                                "forma_de_pago": {
+                                    "example": "any"
+                                },
+                                "importe": {
+                                    "example": "any"
+                                },
+                                "veterinario": {
+                                    "example": "ObjectId"
+                                },
+                                "mascota": {
+                                    "example": "ObjectId"
+                                },
+                                "practicas": {
+                                    "example": ["ObjectId", "ObjectId"]
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/atenciones/{id}": {
+            "get": {
+                "description": "",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "put": {
+                "description": "",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "fecha_hora_atencion": {
+                                    "example": "any"
+                                },
+                                "forma_de_pago": {
+                                    "example": "any"
+                                },
+                                "importe": {
+                                    "example": "any"
+                                },
+                                "veterinario": {
+                                    "example": "ObjectId"
+                                },
+                                "mascota": {
+                                    "example": "ObjectId"
+                                },
+                                "practicas": {
+                                    "example": ["ObjectId", "ObjectId"]
+                                },
+                                "pagos": {
+                                    "example": ["ObjectId"]
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "patch": {
+                "description": "",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "fecha_hora_atencion": {
+                                    "example": "any"
+                                },
+                                "forma_de_pago": {
+                                    "example": "any"
+                                },
+                                "importe": {
+                                    "example": "any"
+                                },
+                                "veterinario": {
+                                    "example": "ObjectId"
+                                },
+                                "mascota": {
+                                    "example": "ObjectId"
+                                },
+                                "practicas": {
+                                    "example": ["ObjectId", "ObjectId"]
+                                },
+                                "pagos": {
+                                    "example": ["ObjectId"]
                                 }
                             }
                         }
@@ -976,12 +1201,6 @@
                             "properties": {
                                 "descripcion": {
                                     "example": "any"
-                                },
-                                "atenciones": {
-                                    "example": "any"
-                                },
-                                "precios": {
-                                    "example": "any"
                                 }
                             }
                         }
@@ -1052,12 +1271,6 @@
                             "properties": {
                                 "descripcion": {
                                     "example": "any"
-                                },
-                                "atenciones": {
-                                    "example": "any"
-                                },
-                                "precios": {
-                                    "example": "any"
                                 }
                             }
                         }
@@ -1101,12 +1314,6 @@
                             "type": "object",
                             "properties": {
                                 "descripcion": {
-                                    "example": "any"
-                                },
-                                "atenciones": {
-                                    "example": "any"
-                                },
-                                "precios": {
                                     "example": "any"
                                 }
                             }
@@ -1208,10 +1415,7 @@
                                     "example": "any"
                                 },
                                 "especie": {
-                                    "example": "any"
-                                },
-                                "mascota": {
-                                    "example": "any"
+                                    "example": "ObjectId"
                                 }
                             }
                         }
@@ -1284,10 +1488,7 @@
                                     "example": "any"
                                 },
                                 "especie": {
-                                    "example": "any"
-                                },
-                                "mascota": {
-                                    "example": "any"
+                                    "example": "ObjectId"
                                 }
                             }
                         }
@@ -1334,10 +1535,7 @@
                                     "example": "any"
                                 },
                                 "especie": {
-                                    "example": "any"
-                                },
-                                "mascota": {
-                                    "example": "any"
+                                    "example": "ObjectId"
                                 }
                             }
                         }
@@ -1444,13 +1642,10 @@
                                     "example": "any"
                                 },
                                 "owner": {
-                                    "example": "any"
+                                    "example": "ObjectId"
                                 },
                                 "raza": {
-                                    "example": "any"
-                                },
-                                "atenciones": {
-                                    "example": "any"
+                                    "example": "ObjectId"
                                 }
                             }
                         }
@@ -1529,13 +1724,10 @@
                                     "example": "any"
                                 },
                                 "owner": {
-                                    "example": "any"
+                                    "example": "ObjectId"
                                 },
                                 "raza": {
-                                    "example": "any"
-                                },
-                                "atenciones": {
-                                    "example": "any"
+                                    "example": "ObjectId"
                                 }
                             }
                         }
@@ -1588,279 +1780,10 @@
                                     "example": "any"
                                 },
                                 "owner": {
-                                    "example": "any"
+                                    "example": "ObjectId"
                                 },
                                 "raza": {
-                                    "example": "any"
-                                },
-                                "atenciones": {
-                                    "example": "any"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "500": {
-                        "description": "Internal Server Error"
-                    }
-                }
-            },
-            "delete": {
-                "description": "",
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "authorization",
-                        "in": "header",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "500": {
-                        "description": "Internal Server Error"
-                    }
-                }
-            }
-        },
-        "/atenciones/": {
-            "get": {
-                "description": "",
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "parameters": [
-                    {
-                        "name": "authorization",
-                        "in": "header",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "500": {
-                        "description": "Internal Server Error"
-                    }
-                }
-            },
-            "post": {
-                "description": "",
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "parameters": [
-                    {
-                        "name": "authorization",
-                        "in": "header",
-                        "type": "string"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "fecha_hora_atencion": {
-                                    "example": "any"
-                                },
-                                "forma_de_pago": {
-                                    "example": "any"
-                                },
-                                "importe": {
-                                    "example": "any"
-                                },
-                                "veterinario": {
-                                    "example": "any"
-                                },
-                                "mascota": {
-                                    "example": "any"
-                                },
-                                "practicas": {
-                                    "example": "any"
-                                },
-                                "pagos": {
-                                    "example": "any"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "500": {
-                        "description": "Internal Server Error"
-                    }
-                }
-            }
-        },
-        "/atenciones/{id}": {
-            "get": {
-                "description": "",
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    },
-                    "500": {
-                        "description": "Internal Server Error"
-                    }
-                }
-            },
-            "put": {
-                "description": "",
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "authorization",
-                        "in": "header",
-                        "type": "string"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "fecha_hora_atencion": {
-                                    "example": "any"
-                                },
-                                "forma_de_pago": {
-                                    "example": "any"
-                                },
-                                "importe": {
-                                    "example": "any"
-                                },
-                                "veterinario": {
-                                    "example": "any"
-                                },
-                                "mascota": {
-                                    "example": "any"
-                                },
-                                "practicas": {
-                                    "example": "any"
-                                },
-                                "pagos": {
-                                    "example": "any"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "500": {
-                        "description": "Internal Server Error"
-                    }
-                }
-            },
-            "patch": {
-                "description": "",
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "authorization",
-                        "in": "header",
-                        "type": "string"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "fecha_hora_atencion": {
-                                    "example": "any"
-                                },
-                                "forma_de_pago": {
-                                    "example": "any"
-                                },
-                                "importe": {
-                                    "example": "any"
-                                },
-                                "veterinario": {
-                                    "example": "any"
-                                },
-                                "mascota": {
-                                    "example": "any"
-                                },
-                                "practicas": {
-                                    "example": "any"
-                                },
-                                "pagos": {
-                                    "example": "any"
+                                    "example": "ObjectId"
                                 }
                             }
                         }
@@ -1964,7 +1887,7 @@
                                     "example": "any"
                                 },
                                 "practica": {
-                                    "example": "any"
+                                    "example": "ObjectId"
                                 }
                             }
                         }
@@ -2040,7 +1963,7 @@
                                     "example": "any"
                                 },
                                 "practica": {
-                                    "example": "any"
+                                    "example": "ObjectId"
                                 }
                             }
                         }
@@ -2090,7 +2013,7 @@
                                     "example": "any"
                                 },
                                 "practica": {
-                                    "example": "any"
+                                    "example": "ObjectId"
                                 }
                             }
                         }
@@ -2188,7 +2111,7 @@
                                     "example": "any"
                                 },
                                 "atencion": {
-                                    "example": "any"
+                                    "example": "ObjectId"
                                 }
                             }
                         }
@@ -2265,7 +2188,7 @@
                                     "example": "any"
                                 },
                                 "atencion": {
-                                    "example": "any"
+                                    "example": "ObjectId"
                                 }
                             }
                         }
@@ -2316,7 +2239,7 @@
                                     "example": "any"
                                 },
                                 "atencion": {
-                                    "example": "any"
+                                    "example": "ObjectId"
                                 }
                             }
                         }
