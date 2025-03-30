@@ -12,7 +12,7 @@ const doc = {
         description: 'Documentación de la API de la veterinaria',
         version: '1.0.0',
     },
-    host: `localhost:${process.env.PORT}`,
+    host: process.env.VERCEL_URL || `localhost:${process.env.PORT}`,
     basePath: '/api',
     scheme: ['http', 'https'],
     consumes: ['application/json'],
