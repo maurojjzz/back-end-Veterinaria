@@ -22,15 +22,11 @@ async function sanitizeRolInput(req:Request, res:Response, next:NextFunction){
 
 async function findAll(req:Request, res:Response){
     try {
-        const roles = await em.find(Rol, {}, {populate:['usuarios','veterinarios']})
-        const filteredRoles = roles.map((rol) => ({
-            ...rol,
-            usuarios: rol.usuarios.length > 0 ? rol.usuarios : undefined,
-            veterinarios: rol.veterinarios.length > 0 ? rol.veterinarios : undefined,
-          }));
+        const roles = await em.find(Rol, {})
+        
         res.status(200).json({
             message: 'Roles encontrados',
-            data:filteredRoles
+            data:roles
         });
     } catch (error:any) {
         res.status(500).json({
