@@ -73,6 +73,9 @@ Nota 2: Para los tests, se debe ejecutar el siguiente comando:
 npm run start:test
 ```
 
+### **Credenciales** ###
+Para tener acceso a las credenciales necesarias para acceder a las funcionalidades de la app en sus distintos roles, vaya al siguiente link: https://github.com/maurojjzz/Veterinaria-front-end/blob/master/Documentation/Credentials.md. Allí encontrará los datos de acceso para los 3 roles de la aplicación.
+
 ### **Corriendo tests** ###
 Para correr los tests, ejecuta el siguiente comando en tu terminal:
 
