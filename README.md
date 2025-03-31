@@ -9,7 +9,7 @@ Este proyecto fue desarrollado por estudiantes de la Universidad Tecnológica Na
 Esta aplicación web está diseñada para administración y gestión de veterinarias. Sus funcionalidades se centran en brindarle a los usuarios la posibilidad de gestionar sus mascotas y sacar turnos para las mismas, además de permitir a los veterinarios ver los turnos que se les han asignado y a un administrador gestionar todas las clases y componentes necesarios para el correcto funcionamiento de la veterinaria.
 
 ## **Documentación de la API**
-Puedes encontrar la documentación de la API, hecha con Swagger, en `localhost:3080/api-docs`. 
+Puedes encontrar la documentación de la API, hecha con Swagger, en `https://localhost:3080/api-docs`. 
 
 ## **Instalación**
 
@@ -54,7 +54,7 @@ El gestor de paquetes NPM viene con Node.js y es necesario para este proyecto.
     ```
 2. Crea un archivo `.env` con las siguientes variables de entorno:
     ```env
-   DB_URI = mongodb+srv://vet-304-dsw:1mwu4GHek1snxoz5@veterinaria.mqiuzg1.mongodb.net/?retryWrites=true&w=majority
+DB_URI = mongodb+srv://vet-304-dsw:1mwu4GHek1snxoz5@veterinaria.mqiuzg1.mongodb.net/?retryWrites=true&w=majority
 DB_URI_TEST = mongodb+srv://maurojim123:5rNMSHY9QGELkjX5@vetapptest.tx68qeo.mongodb.net/?retryWrites=true&w=majority 
 DB_NAME = VetApp
 PORT = 3080
@@ -68,9 +68,15 @@ El backend se ejecuta por defecto en el puerto 3080. Para iniciarlo, desde la ca
 npm run start:dev
 ```
 Nota: para correr la aplicación completa, luego de correr el backend, deberás correr el frontend, para lo cual puedes entrar a el siguiente repositorio: https://github.com/maurojjzz/Veterinaria-front-end, y seguir el instructivo de su README. Si no haces esto, simplemente estarás corriendo el backend, lo cual haría engorroso acceder a las funcionalidades, y para muchas lo volvería imposible.
+Nota 2: Para los tests, se debe ejecutar el siguiente comando:
+```sh
+npm run start:test
+```
 
 ### **Corriendo tests** ###
 Para correr los tests, ejecuta el siguiente comando en tu terminal:
 
-```npm run test
+```sh
+npm run test
+
 ```
