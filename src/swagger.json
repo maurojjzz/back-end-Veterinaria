@@ -1,23 +1,29 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "VeterinariApp API",
+    "title": "Veterinaria API",
     "description": "Documentación de la API de la veterinaria",
     "version": "1.0.0"
   },
   "host": "localhost:3080",
   "basePath": "/api",
-  "schemes": ["http"],
+  "schemes": 
+    "http"
+  ,
   "securityDefinitions": {
     "BearerAuth": {
       "type": "apiKey",
       "in": "header",
       "name": "Authorization",
-      "description": "Utilizar el formato \"Bearer {token completo de su usuario}\" en el header para autenticar las solicitudes."
+      "description": "Utilizar el formato \"Bearer <token>\" en el header para autenticar las solicitudes."
     }
   },
-  "consumes": ["application/json"],
-  "produces": ["application/json"],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
   "paths": {
     "/auth/login": {
       "post": {
@@ -2287,3 +2293,4 @@
   },
   "scheme": ["http", "https"]
 }
+
