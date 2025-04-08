@@ -14,7 +14,7 @@ const doc = {
     },
     host: process.env.VERCEL_URL || `localhost:${process.env.PORT}`,
     basePath: '/api',
-    scheme: ['http', 'https'],
+    schemes: ['https'],
     consumes: ['application/json'],
     produces: ['application/json'],
     securityDefinitions: {
