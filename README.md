@@ -9,7 +9,7 @@ Este proyecto fue desarrollado por estudiantes de la Universidad Tecnológica Na
 Esta aplicación web está diseñada para administración y gestión de veterinarias. Sus funcionalidades se centran en brindarle a los usuarios la posibilidad de gestionar sus mascotas y sacar turnos para las mismas, además de permitir a los veterinarios ver los turnos que se les han asignado y a un administrador gestionar todas las clases y componentes necesarios para el correcto funcionamiento de la veterinaria.
 
 ## **Documentación de la API**
-Puedes encontrar la documentación de la API, hecha con Swagger, en `https://localhost:3080/api-docs`. 
+Puedes encontrar la documentación de la API una vez corriendo el servidor backend, hecha con Swagger, en [http://localhost:3080/api-docs](http://localhost:3080/api-docs) 
 
 ## **Instalación**
 
