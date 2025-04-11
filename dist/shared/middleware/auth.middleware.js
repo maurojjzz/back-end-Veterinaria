@@ -12,6 +12,7 @@ export const validateToken = (req, res, next) => {
             return res.status(401).json({ message: "access denied, token expired or incorrect" });
         }
         else {
+            req.user = user;
             next();
         }
     });
